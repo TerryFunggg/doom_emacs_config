@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+(setq user-full-name "Terry Fung"
+      user-mail-address "terryyessfung@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -21,15 +21,11 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-
+(setq doom-font (font-spec :family "Source Code Pro" :size 16))
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-one)
-
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -52,3 +48,73 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(add-hook! 'org-mode-hook (company-mode -1))
+(add-hook! 'org-capture-mode-hook (company-mode -1))
+
+(setq
+ web-mode-markup-indent-offset 2
+ web-mode-code-indent-offset 2
+ web-mode-css-indent-offset 2
+ js-indent-level 2
+ typescript-indent-level 2
+ projectile-project-search-path '("~/Documents/Documents_inAppleII/")
+ org-agenda-skip-scheduled-if-done t
+ )
+
+;; full-screen when open the emcas
+(if (eq initial-window-system 'x)
+    desktop file
+    (toggle-frame-maximized)
+    (toggle-frame-fullscreen))
+
+;; Seoarate custom file
+(setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+(global-set-key "\C-s" 'swiper)
+
+
+(use-package! evil-multiedit
+  :init
+  :config
+  (evil-multiedit-default-keybinds))
+
+;; Org config
+(after! org
+  (map! :map org-mode-map
+        :n "M-j" #'org-metadown
+        :n "M-k" #'org-metaup)
+  (setq org-directory "~/Documents/Documents_inAppleII/org/"
+        ))
+
+;; super-agende-mode
+(use-package! org-super-agenda
+  :after org-agenda
+  :init
+  (setq org-super-agenda-groups '((:name "Today" :time-grid t :scheduled today)
+                                  (:name "Due today" :deadline today)
+                                  (:name "Important" :priority "A")
+                                  (:name "Overdue" :deadline past)
+                                  (:name "Due soon" :deadline future)
+                                  (:name "Project List" :tag "project")
+                                  (:name "Hold" :todo "HOLD")
+                                  (:name "Reading List" :tag "book")))
+  :config
+  (org-super-agenda-mode)
+  )
+
+;; Org-brain
+(use-package! org-brain
+  :init
+  (setq org-brain-path "/Users/singtaifung/Documents/Documents_inAppleII/org_notes/org_brain/")
+  (with-eval-after-load 'evil (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
+  :config
+  (map! :ne "SPC n b" #'org-brain-visualize))
+
+(use-package! deft
+  :init
+  (setq deft-extensions '("txt" "org" "md")
+        deft-directory "~/Documents/Documents_inAppleII/org_notes/"
+        deft-recursive t))
