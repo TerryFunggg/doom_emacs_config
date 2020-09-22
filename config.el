@@ -21,7 +21,7 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "Source Code Pro" :size 16))
+(setq doom-font (font-spec :family "monospace" :size 16))
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
@@ -58,15 +58,14 @@
  web-mode-css-indent-offset 2
  js-indent-level 2
  typescript-indent-level 2
- projectile-project-search-path '("~/Documents/Documents_inAppleII/")
- org-agenda-skip-scheduled-if-done t
+ projectile-project-search-path '("~/Documents/CodeBox")
  )
 
 ;; full-screen when open the emcas
-(if (eq initial-window-system 'x)
-    desktop file
-    (toggle-frame-maximized)
-    (toggle-frame-fullscreen))
+;;(if (eq initial-window-system 'x)
+;;    desktop file
+;;    (toggle-frame-maximized)
+;;    (toggle-frame-fullscreen))
 
 ;; Seoarate custom file
 (setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
@@ -86,7 +85,15 @@
   (map! :map org-mode-map
         :n "M-j" #'org-metadown
         :n "M-k" #'org-metaup)
-  (setq org-directory "~/Documents/Documents_inAppleII/org/"
+  (setq org-directory "~/Documents/org/"
+        org-agenda-skip-scheduled-if-done t
+        org-todo-keywords '((sequencep "TODO(t)" "PROGRESS(p)" "HOLD(h)" "|" "DONE(d)" "CANCELLED(c)"))
+        org-todo-keyword-faces '(("TODO" :foreground "#b7cefa" :weight blod :underline t)
+                                 ("PROGRESS" :foreground "#20b2aa" :weight blod :underline t)
+                                 ("HOLD" :foreground "#9f7efe" :weight blod :underline t)
+                                 ("DONE" :foreground "#50a14f" :weight blod :underline t)
+                                 ("CANCELLED" :foreground "#ff6480" :weight blod :underline t))
+        org-agenda-files (list "~/Documents/org/GTD.org")
         ))
 
 ;; super-agende-mode
@@ -108,13 +115,17 @@
 ;; Org-brain
 (use-package! org-brain
   :init
-  (setq org-brain-path "/Users/singtaifung/Documents/Documents_inAppleII/org_notes/org_brain/")
-  (with-eval-after-load 'evil (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
+  (setq org-brain-path "~/Documents/org_notes/org_brain/")
+;;  (with-eval-after-load 'evil (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
   :config
   (map! :ne "SPC n b" #'org-brain-visualize))
 
 (use-package! deft
   :init
   (setq deft-extensions '("txt" "org" "md")
-        deft-directory "~/Documents/Documents_inAppleII/org_notes/"
+        deft-directory "~/Documents/org_notes/"
         deft-recursive t))
+
+(setq url-proxy-services
+      '(("http"     . "127.0.0.1:12333")
+	("https"     . "127.0.0.1:12333")))
