@@ -21,15 +21,15 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "monospace" :size 16))
+(setq doom-font (font-spec :family "Source Code Pro" :size 16))
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-city-lights)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type nil)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
@@ -115,7 +115,7 @@
 ;; Org-brain
 (use-package! org-brain
   :init
-  (setq org-brain-path "~/Documents/org_notes/org_brain/")
+  (setq org-brain-path "~/Documents/org/org_notes/org_brain/")
 ;;  (with-eval-after-load 'evil (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
   :config
   (map! :ne "SPC n b" #'org-brain-visualize))
@@ -123,9 +123,12 @@
 (use-package! deft
   :init
   (setq deft-extensions '("txt" "org" "md")
-        deft-directory "~/Documents/org_notes/"
+        deft-directory "~/Documents/org/org_notes/"
         deft-recursive t))
 
 (setq url-proxy-services
       '(("http"     . "127.0.0.1:12333")
 	("https"     . "127.0.0.1:12333")))
+
+(setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
+		      ("melpa" . "http://elpa.emacs-china.org/melpa/")))
