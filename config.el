@@ -136,7 +136,7 @@
 
 (define-key evil-insert-state-map "\C-k" 'evil-delete-line)
 (define-key evil-insert-state-map "\C-y" 'yank)
-(define-key evil-insert-state-map "\C-d" 'kill-word)
+(define-key evil-insert-state-map "\M-d" 'kill-word)
 (define-key evil-insert-state-map "\C-n" 'evil-next-line)
 (define-key evil-visual-state-map "\C-n" 'evil-next-line)
 (define-key evil-insert-state-map "\C-p" 'evil-previous-line)
