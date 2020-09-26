@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: this
+# uuid: this
+# key: this
+# --
+$this->$0
