@@ -91,7 +91,7 @@
         :n "M-k" #'org-metaup)
   (setq org-directory "~/Documents/org"
         org-agenda-span 'day
-        org-agenda-start-day "+1d"
+        org-agenda-start-day "+0d"
         org-todo-keywords '((sequencep "TODO(t)" "HOLD(h)" "|" "DONE(d)" "CANCELLED(c)"))
         org-capture-templates
         '(("i" "Todo Inbox" entry (file "~/Documents/org/Inbox.org")
