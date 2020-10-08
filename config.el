@@ -75,6 +75,10 @@
 
 (global-set-key "\C-s" 'swiper)
 
+(defun open-my-inbox()
+  (interactive)
+  (find-file "~/Documents/org/Inbox.org"))
+(global-set-key (kbd "<f12>") 'open-my-inbox)
 
 (use-package! evil-multiedit
   :init
