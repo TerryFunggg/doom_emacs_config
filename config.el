@@ -51,7 +51,6 @@
 
 (add-hook! 'org-mode-hook (company-mode -1))
 (add-hook! 'org-capture-mode-hook (company-mode -1))
-(flycheck-mode -1)
 
 (setq
  web-mode-markup-indent-offset 2
