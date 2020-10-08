@@ -89,32 +89,56 @@
   (map! :map org-mode-map
         :n "M-j" #'org-metadown
         :n "M-k" #'org-metaup)
-  (setq org-directory "~/Documents/org/"
-        org-agenda-skip-scheduled-if-done t
-        org-todo-keywords '((sequencep "TODO(t)" "PROGRESS(p)" "HOLD(h)" "|" "DONE(d)" "CANCELLED(c)"))
-        org-todo-keyword-faces '(("TODO" :foreground "#b7cefa" :weight blod :underline t)
-                                 ("PROGRESS" :foreground "#20b2aa" :weight blod :underline t)
-                                 ("HOLD" :foreground "#9f7efe" :weight blod :underline t)
-                                 ("DONE" :foreground "#50a14f" :weight blod :underline t)
-                                 ("CANCELLED" :foreground "#ff6480" :weight blod :underline t))
-        org-agenda-files (list "~/Documents/org/GTD.org")
-        ))
+  (setq org-directory "~/Documents/org"
+        org-agenda-span 'day
+        org-agenda-start-day "+1d"
+        org-todo-keywords '((sequencep "TODO(t)" "HOLD(h)" "|" "DONE(d)" "CANCELLED(c)"))
+        org-capture-templates
+        '(("i" "Todo Inbox" entry (file "~/Documents/org/Inbox.org")
+           "* %?\n")
+          ("q" "Quick Note" entry (file "~/Documents/org/Drafts.org")
+           "* %?\n %T\n "))
+        org-agenda-custom-commands
+                '(("p" "Plan today"
+                   ((agenda)
+                    (tags-todo "BOOK")
+                    (tags-todo "EBOOK")
+                    (tags-todo "PRACTICE")
+                    (tags-todo "LEARNING")
+                    (tags-todo "PROJECT"))))
+        org-refile-targets '(("~/Documents/org/GTD.org" :level . 1)
+                           ("~/Documents/org/Someday.org" :level . 1)
+                           ("~/Documents/org/Inbox.org" :level . 1)
+                           ("~/Documents/org/Done.org" :level . 1))
+       
+        org-agenda-files (list "~/Documents/org/GTD.org")))
 
 ;; super-agende-mode
-(use-package! org-super-agenda
-  :after org-agenda
-  :init
-  (setq org-super-agenda-groups '((:name "Today" :time-grid t :scheduled today)
-                                  (:name "Due today" :deadline today)
-                                  (:name "Important" :priority "A")
-                                  (:name "Overdue" :deadline past)
-                                  (:name "Due soon" :deadline future)
-                                  (:name "Project List" :tag "project")
-                                  (:name "Hold" :todo "HOLD")
-                                  (:name "Reading List" :tag "book")))
-  :config
-  (org-super-agenda-mode)
-  )
+ (use-package! org-super-agenda
+   :after org-agenda
+   :init
+   (setq org-super-agenda-groups
+       '((:name "Today"
+                :time-grid t
+                :todo "TODAY")
+         (:name "Important"
+                ;:tag "bills"
+                :priority "A")
+         (:order-multi (5 (:name "Reading"
+                                 :tag ("EBOOK" "BOOK"))
+                          (:name "Learning"
+                                 :tag "LEARNING")
+                          (:name "Personal"
+                                 :habit t
+                                 :tag "@ME")
+                          (:name "Project"
+                                 :tag "PROJECT")))
+         (:todo "HOLD" :order 8)  ;
+         (:priority<= "B"
+          :order 1)))
+
+       :config
+       (org-super-agenda-mode))
 
 ;; Org-brain
 (use-package! org-brain
