@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: input_text
+# uuid: input_text
+# key: inputt
+# --
+<input type="text" id="$1" name="$2" value="$3" placeholder="$4" required/>
