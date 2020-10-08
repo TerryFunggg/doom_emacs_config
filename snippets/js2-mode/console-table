@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: console.table
+# uuid: console.table
+# key: clt
+# --
+console.table($0);
