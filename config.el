@@ -48,7 +48,7 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-
+(display-time)
 (add-hook! 'org-mode-hook (company-mode -1))
 (add-hook! 'org-capture-mode-hook (company-mode -1))
 
@@ -124,9 +124,9 @@
          (:name "Important"
                 ;:tag "bills"
                 :priority "A")
-         (:order-multi (5 (:name "Reading"
+         (:order-multi (5 (:name "To-Read"
                                  :tag ("EBOOK" "BOOK"))
-                          (:name "Learning"
+                          (:name "To-Learn"
                                  :tag "LEARNING")
                           (:name "Personal"
                                  :tag "@ME")
@@ -145,7 +145,12 @@
   (setq org-brain-path "~/Documents/org/org_notes/org_brain/")
 ;;  (with-eval-after-load 'evil (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
   :config
-  (map! :ne "SPC n b" #'org-brain-visualize))
+  (map! :ne "SPC n b" #'org-brain-visualize)
+  (setq org-id-track-globally t)
+  (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
+  (add-hook 'before-save-hook #'org-brain-ensure-ids-in-buffer)
+  (setq org-brain-visualize-default-choices 'all)
+  )
 
 (use-package! deft
   :init
