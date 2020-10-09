@@ -129,7 +129,6 @@
                           (:name "Learning"
                                  :tag "LEARNING")
                           (:name "Personal"
-                                 :habit t
                                  :tag "@ME")
                           (:name "Project"
                                  :tag "PROJECT")))
