@@ -50,4 +50,3 @@
 ;(unpin! t)
 (package! org-super-agenda)
 (package! evil-multiedit)
-(package! org-brain)
