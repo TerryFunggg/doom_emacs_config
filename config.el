@@ -128,6 +128,8 @@
                                  :tag ("EBOOK" "BOOK"))
                           (:name "To-Learn"
                                  :tag "LEARNING")
+                          (:name "To-Write"
+                                 :tag "WRITING")
                           (:name "Personal"
                                  :tag "@ME")
                           (:name "Project"
