@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: assert_equal
+# uuid: assert_equal
+# key: asse
+# --
+assert_equal($1,$2)$0
