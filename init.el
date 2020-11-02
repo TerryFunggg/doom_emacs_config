@@ -146,6 +146,7 @@
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org +brain
+            +journal
             +pretty)               ; organize your plain life in plain text
        (php +lsp)                ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
