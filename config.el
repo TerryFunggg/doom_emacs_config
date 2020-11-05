@@ -21,11 +21,11 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "Source Code Pro" :size 18 :weight 'bold))
+(setq doom-font (font-spec :family "Source Code Pro" :size 18 :weight 'normal))
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-solarized-light)
+(setq doom-theme 'doom-nord)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -178,3 +178,9 @@
 (setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/.local/etc/plantuml.jar"))
 (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
 (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
+
+(global-wakatime-mode t)
+
+(map! :leader
+      :desc "Jump back"
+      "c b" #'lsp-ui-peek-jump-backward)
