@@ -149,7 +149,7 @@
   :config
   (map! :ne "SPC n b" #'org-brain-visualize)
   (setq org-id-track-globally t)
-  (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
+  (setq org-id-locations-file "~/Documents/org/.org-id-locations")
   (add-hook 'before-save-hook #'org-brain-ensure-ids-in-buffer)
   (setq org-brain-visualize-default-choices 'all)
   )
@@ -179,8 +179,9 @@
 (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
 (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
-(global-wakatime-mode t)
 
 (map! :leader
       :desc "Jump back"
       "c b" #'lsp-ui-peek-jump-backward)
+
+(add-hook 'before-save-hook 'gofmt-before-save)
