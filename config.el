@@ -101,10 +101,6 @@
         org-agenda-custom-commands
                 '(("p" "Plan today"
                    ((agenda)
-                    (tags-todo "BOOK")
-                    (tags-todo "EBOOK")
-                    (tags-todo "PRACTICE")
-                    (tags-todo "LEARNING")
                     (tags-todo "PROJECT"))))
         org-refile-targets '(("~/Documents/org/GTD.org" :level . 1)
                            ("~/Documents/org/Someday.org" :level . 1)
@@ -120,23 +116,24 @@
    (setq org-super-agenda-groups
        '((:name "Today"
                 :time-grid t
+                :order 1
                 :todo "TODAY")
          (:name "Important"
-                ;:tag "bills"
+                :order 2
                 :priority "A")
-         (:order-multi (5 (:name "To-Read"
+         (:name "Project"
+                :order 3
+                :tag "PROJECT")
+         (:order-multi (4 (:name "To-Read"
                                  :tag ("EBOOK" "BOOK"))
                           (:name "To-Learn"
-                                 :tag "LEARNING")
-                          (:name "To-Write"
-                                 :tag "WRITING")
+                                 :tag "LEARN")
+                          (:name "Habit"
+                                 :tag "HABIT")
                           (:name "Personal"
-                                 :tag "@ME")
-                          (:name "Project"
-                                 :tag "PROJECT")))
-         (:todo "HOLD" :order 8)  ;
-         (:priority<= "B"
-          :order 1)))
+                                 :tag "@ME")))
+         (:todo "HOLD" :order 5)
+         (:name "Overdue" :deadline past :order 6)))
 
        :config
        (org-super-agenda-mode))
@@ -178,7 +175,6 @@
 (setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/.local/etc/plantuml.jar"))
 (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
 (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
-
 
 (map! :leader
       :desc "Jump back"
