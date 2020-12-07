@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: fsanitize
+# uuid: fsanitize
+# key: fsanitize
+# condition: t
+# --
+function sanitizeFormString($text){
+  $text = strip_tags($text);
+  $text = str_replace(" ", "", $text);
+  $text = ucfirst(strtolower($text));
+  return $text;
+}

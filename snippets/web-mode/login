@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: login
+# uuid: web_login
+# key: login
+# condition: t
+# --
+<form class="login-form" action="register" method="POST">
+  <h2>Login to your account</h2>
+  <p>
+    <lable for="login-username">Username</lable>
+    <input type="text" id="login-username" name="login-username" value="" required/>
+  </p>
+  <p>
+    <lable for="login-password">Password</lable>
+    <input type="password" id="login-password" name="login-password" required/>
+  </p>
+  <button type="submit" name="login-button">Login</button>
+</form>

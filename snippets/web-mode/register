@@ -1,0 +1,39 @@
+# -*- mode: snippet -*-
+# name: register
+# uuid: web_register
+# key: register
+# condition: t
+# --
+
+<form class="login-form" action="register" method="POST">
+  <h2>Register to your account</h2>
+  <p>
+    <lable for="username">Username</lable>
+    <input type="text" id="username" name="username" value="" required/>
+  </p>
+  <p>
+    <lable for="firstname">First Name</lable>
+    <input type="text" id="firstname" name="firstname" value="" required/>
+  </p>
+  <p>
+    <lable for="lastname">Last Name</lable>
+    <input type="text" id="lastname" name="lastname" value="" required/>
+  </p>
+  <p>
+    <lable for="email">Email</lable>
+    <input type="email" id="email" name="email" value="" required/>
+  </p>
+  <p>
+    <lable for="email2">Confirm Email</lable>
+    <input type="email" id="email2" name="email2" value="" required/>
+  </p>
+  <p>
+    <lable for="password">Passowrd</lable>
+    <input type="password" id="password" name="password" required/>
+  </p>
+  <p>
+    <lable for="password2">Confirm Passowrd</lable>
+    <input type="password2" id="password2" name="password2" required/>
+  </p>
+  <button type="submit" name="register-button">Sign Up</button>
+</form>

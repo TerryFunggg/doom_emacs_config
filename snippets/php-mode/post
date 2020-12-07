@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: post
+# uuid: post
+# key: $P
+# condition: t
+# --
+$_POST[$0]
