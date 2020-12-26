@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
-# name: login
+# name: blogin
 # uuid: web_login
-# key: login
+# key: blogin
 # condition: t
 # --
 <form class="login-form" action="register" method="POST">
