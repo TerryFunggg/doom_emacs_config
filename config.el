@@ -25,7 +25,16 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-nord)
+;; Dark theme :
+;;(setq doom-theme 'doom-horizon)
+(setq doom-theme 'doom-monokai-pro)
+;;(setq doom-theme 'doom-dracula)
+;;(setq doom-theme 'doom-nord)
+;;
+;;For org/writing mode
+;;(setq doom-theme 'leuven)
+;;(setq doom-theme 'doom-solarized-light)
+;;(setq doom-theme 'doom-flatwhite)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -58,7 +67,7 @@
  web-mode-css-indent-offset 2
  js-indent-level 2
  typescript-indent-level 2
- projectile-project-search-path '("~/Documents/CodeBox")
+ projectile-project-search-path '("~/CodeBox")
  )
 
 ;; full-screen when open the emcas
@@ -125,7 +134,7 @@
                 :order 3
                 :tag "PROJECT")
          (:order-multi (4 (:name "To-Read"
-                                 :tag ("EBOOK" "BOOK"))
+                                 :tag ("EBOOK" "BOOK" "WEBPAGE"))
                           (:name "To-Learn"
                                  :tag "LEARN")
                           (:name "Habit"
@@ -180,5 +189,8 @@
 (map! :leader
       :desc "Jump back"
       "c b" #'lsp-ui-peek-jump-backward)
+
+(after! undo-tree
+  (setq undo-tree-auto-save-history nil))
 
 (add-hook 'before-save-hook 'gofmt-before-save)
