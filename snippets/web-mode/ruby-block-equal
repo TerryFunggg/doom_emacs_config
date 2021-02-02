@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ruby-block-equal
+# uuid: rbequal
+# key: %=
+# condition: t
+# --
+<%= $0 %>

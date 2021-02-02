@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ruby-block
+# uuid: rblock
+# key: %%
+# condition: t
+# --
+<% $0 %>
