@@ -148,17 +148,17 @@
        (org-super-agenda-mode))
 
 ;; Org-brain
-(use-package! org-brain
-  :init
-  (setq org-brain-path "~/Documents/org/org_notes/org_brain/")
-;;  (with-eval-after-load 'evil (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
-  :config
-  (map! :ne "SPC n b" #'org-brain-visualize)
-  (setq org-id-track-globally t)
-  (setq org-id-locations-file "~/Documents/org/.org-id-locations")
-  (add-hook 'before-save-hook #'org-brain-ensure-ids-in-buffer)
-  (setq org-brain-visualize-default-choices 'all)
-  )
+;; (use-package! org-brain
+;;   :init
+;;   (setq org-brain-path "~/Documents/org/org_notes/org_brain/")
+;; ;;  (with-eval-after-load 'evil (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
+;;   :config
+;;   (map! :ne "SPC n b" #'org-brain-visualize)
+;;   (setq org-id-track-globally t)
+;;   (setq org-id-locations-file "~/Documents/org/.org-id-locations")
+;;   (add-hook 'before-save-hook #'org-brain-ensure-ids-in-buffer)
+;;   (setq org-brain-visualize-default-choices 'all)
+;;   )
 
 (use-package! deft
   :init
@@ -182,9 +182,9 @@
 (define-key evil-insert-state-map "\C-p" 'evil-previous-line)
 (define-key evil-visual-state-map "\C-p" 'evil-previous-line)
 
-(setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/.local/etc/plantuml.jar"))
-(add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-(org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
+;; (setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/.local/etc/plantuml.jar"))
+;; (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+;; (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
 (map! :leader
       :desc "Jump back"
@@ -193,4 +193,57 @@
 (after! undo-tree
   (setq undo-tree-auto-save-history nil))
 
+;; org roam config
+(use-package! org-roam
+  :init
+  (setq org-roam-directory "~/Documents/org/roam")
+
+  :config
+  (setq org-roam-capture-templates
+      '(
+        ("d" "default" plain (function org-roam-capture--get-point)
+         "%?"
+         :file-name "%<%Y%m%d%H%M%S>-${slug}"
+         :head "#+title: ${title}\n#+roam_alias:\n#+roam_tags: \n\n")
+        ("r" "Read Note" plain (function org-roam-capture--get-point)
+         "* What\n\n* Why"
+         :file-name "Read-Note-${slug}"
+         :head "#+title: ${title}\n#+roam_alias:\n#+roam_tags: \n\n")
+        ("a" "Annotation" plain (function org-roam-capture--get-point)
+               "%U ${body}\n"
+               :file-name "${slug}"
+               :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
+               :immediate-finish t
+               :unnarrowed t)
+        ("g" "group")
+        ("ga" "Group A" plain (function org-roam-capture--get-point)
+         "%?"
+         :file-name "%<%Y%m%d%H%M%S>-${slug}"
+         :head "#+title: ${title}\n#+roam_alias:\n\n")
+        ("gb" "Group B" plain (function org-roam-capture--get-point)
+         "%?"
+         :file-name "%<%Y%m%d%H%M%S>-${slug}"
+         :head "#+title: ${title}\n#+roam_alias:\n\n"))))
+
+(add-to-list 'org-roam-capture-ref-templates
+             '("a" "Annotation" plain (function org-roam-capture--get-point)
+               "%U ${body}\n"
+               :file-name "${slug}"
+               :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
+               :immediate-finish t
+               :unnarrowed t))
+
+(use-package! org-roam-server
+  :config
+  (setq org-roam-server-host "127.0.0.1"
+      org-roam-server-port 9090
+      org-roam-server-export-inline-images t
+      org-roam-server-authenticate nil
+      org-roam-server-network-label-truncate t
+      org-roam-server-network-label-truncate-length 60
+      org-roam-server-network-label-wrap-length 20))
+(org-roam-server-mode)
+
+
+(require 'org-roam-protocol)
 (add-hook 'before-save-hook 'gofmt-before-save)
