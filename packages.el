@@ -50,5 +50,6 @@
 ;(unpin! t)
 (package! org-super-agenda)
 (package! evil-multiedit)
-
+(package! org-roam)
+(package! org-roam-server)
 (package! plantuml-mode)

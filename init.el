@@ -15,7 +15,7 @@
 ;;      directory (for easy access to its source code).
 
 (doom! :input
-       ;;chinese
+       chinese
        ;;japanese
        ;;layout            ; auie,ctsrnm is the superior home row
 
@@ -23,8 +23,8 @@
        (company)            ; the ultimate code completion backend
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       (ivy +icons
-            +childframe)               ; a search engine for love and life
+       (ivy +icons)
+            ;;+childframe)               ; a search engine for love and life
 
        :ui
        deft              ; notational velocity for Emacs
@@ -133,7 +133,7 @@
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        json                ; At least it ain't XML
-       ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
+       (java +lsp) ; the poster child for carpal tunnel syndrome
        (javascript +lsp)          ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
@@ -146,7 +146,7 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org +brain
+       (org +roam
             +journal
             +pretty)               ; organize your plain life in plain text
        (php +lsp)                ; perl's insecure younger brother
