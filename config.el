@@ -99,6 +99,7 @@
         :n "M-j" #'org-metadown
         :n "M-k" #'org-metaup)
   (setq org-directory "~/Documents/org"
+        org-hide-emphasis-markers t
         org-agenda-span 'day
         org-agenda-start-day "+0d"
         org-todo-keywords '((sequencep "TODO(t)" "HOLD(h)" "|" "DONE(d)" "CANCELLED(c)"))
@@ -111,12 +112,13 @@
                 '(("p" "Plan today"
                    ((agenda)
                     (tags-todo "PROJECT"))))
-        org-refile-targets '(("~/Documents/org/GTD.org" :level . 1)
-                           ("~/Documents/org/Someday.org" :level . 1)
+        org-refile-targets '(("~/Documents/org/TODO.org" :level . 1)
                            ("~/Documents/org/Inbox.org" :level . 1)
                            ("~/Documents/org/Done.org" :level . 1))
        
-        org-agenda-files (list "~/Documents/org/GTD.org")))
+        org-agenda-files (list "~/Documents/org/TODO.org"
+                               "~/Documents/org/Habit.org"
+                               "~/Documents/org/Project.org")))
 
 ;; super-agende-mode
  (use-package! org-super-agenda
@@ -242,7 +244,7 @@
       org-roam-server-network-label-truncate t
       org-roam-server-network-label-truncate-length 60
       org-roam-server-network-label-wrap-length 20))
-(org-roam-server-mode)
+;;(org-roam-server-mode)
 
 
 (require 'org-roam-protocol)
