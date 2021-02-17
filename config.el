@@ -62,7 +62,7 @@
 (add-hook! 'org-capture-mode-hook (company-mode -1))
 
 (setq
- web-mode-markup-indent-offset 2
+ web-mode-markup-indent-offset 4
  web-mode-code-indent-offset 2
  web-mode-css-indent-offset 2
  js-indent-level 2
@@ -245,7 +245,9 @@
       org-roam-server-network-label-truncate-length 60
       org-roam-server-network-label-wrap-length 20))
 ;;(org-roam-server-mode)
-
-
 (require 'org-roam-protocol)
+
+;; react jsx support
+(add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode)) ;; auto-enable for .js/.jsx files
+(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
 (add-hook 'before-save-hook 'gofmt-before-save)
