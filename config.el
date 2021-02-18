@@ -62,9 +62,6 @@
 (add-hook! 'org-capture-mode-hook (company-mode -1))
 
 (setq
- web-mode-markup-indent-offset 4
- web-mode-code-indent-offset 2
- web-mode-css-indent-offset 2
  js-indent-level 2
  typescript-indent-level 2
  projectile-project-search-path '("~/CodeBox")
@@ -246,5 +243,21 @@
       org-roam-server-network-label-wrap-length 20))
 ;;(org-roam-server-mode)
 (require 'org-roam-protocol)
+
+;; Web mode config
+(use-package! web-mode
+  :hook (web-mode . prettier-js-mode)
+  :config
+  (setq web-mode-indent-level 2)
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2))
+
+(use-package! vue-mode
+  :mode "\\.vue\\'"
+  :hook (vue-mode . prettier-js-mode)
+  :config
+  (add-hook 'vue-mode-hook #'lsp)
+  (setq prettier-js-args '("--parser vue")))
 
 (add-hook 'before-save-hook 'gofmt-before-save)

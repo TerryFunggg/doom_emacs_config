@@ -52,4 +52,6 @@
 (package! evil-multiedit)
 (package! org-roam)
 (package! org-roam-server)
+(package! vue-mode)
+(package! prettier-js)
 (package! plantuml-mode)
