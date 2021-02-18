@@ -247,7 +247,4 @@
 ;;(org-roam-server-mode)
 (require 'org-roam-protocol)
 
-;; react jsx support
-(add-to-list 'auto-mode-alist '("\\.jsx?$" . web-mode)) ;; auto-enable for .js/.jsx files
-(setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
 (add-hook 'before-save-hook 'gofmt-before-save)
