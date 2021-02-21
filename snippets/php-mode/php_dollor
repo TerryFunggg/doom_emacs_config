@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: php_dollor
+# uuid: phpdollor
+# key: dd
+# condition: t
+# --
+$

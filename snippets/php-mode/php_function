@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: php_function
+# uuid: phpfunction
+# key: ff
+# condition: t
+# --
+function $1($2)
+{
+    $0
+}
