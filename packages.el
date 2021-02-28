@@ -1,4 +1,3 @@
-;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
 ;; To install a package with Doom you must declare them here and run 'doom sync'
@@ -52,6 +51,6 @@
 (package! evil-multiedit)
 (package! org-roam)
 (package! org-roam-server)
-(package! vue-mode)
 (package! prettier-js)
 (package! plantuml-mode)
+;;(package! web-beautify)

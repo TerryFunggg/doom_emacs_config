@@ -186,8 +186,12 @@
 ;; (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
 (map! :leader
-      :desc "Jump back"
-      "c b" #'lsp-ui-peek-jump-backward)
+      :desc "lsp jump back"
+      "j b" #'lsp-ui-peek-jump-backward)
+
+(map! :leader
+      :desc "Go to line"
+      "j l" 'avy-goto-line)
 
 (after! undo-tree
   (setq undo-tree-auto-save-history nil))
@@ -246,18 +250,12 @@
 
 ;; Web mode config
 (use-package! web-mode
-  :hook (web-mode . prettier-js-mode)
+  ;;:hook (web-mode . prettier-js-mode)
   :config
   (setq web-mode-indent-level 2)
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-code-indent-offset 2))
 
-(use-package! vue-mode
-  :mode "\\.vue\\'"
-  :hook (vue-mode . prettier-js-mode)
-  :config
-  (add-hook 'vue-mode-hook #'lsp)
-  (setq prettier-js-args '("--parser vue")))
 
 (add-hook 'before-save-hook 'gofmt-before-save)
