@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
 # name: public fucntion
 # uuid: pubf
-# key: pubf
+# key: pff
 # --
 public function $1($2)
 {
