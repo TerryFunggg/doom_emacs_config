@@ -187,11 +187,18 @@
 
 (map! :leader
       :desc "lsp jump back"
+      :n
       "j b" #'lsp-ui-peek-jump-backward)
 
 (map! :leader
       :desc "Go to line"
+      :n
       "j l" 'avy-goto-line)
+
+(map! :leader
+      :desc "Go to char(s)"
+      :n
+      "j c" 'evil-avy-goto-char-timer)
 
 (after! undo-tree
   (setq undo-tree-auto-save-history nil))
