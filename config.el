@@ -104,7 +104,10 @@
         '(("i" "Todo Inbox" entry (file "~/Documents/org/Inbox.org")
            "* %?\n")
           ("q" "Quick Note" entry (file "~/Documents/org/Drafts.org")
-           "* %?\n %T\n "))
+           "* %?\n %T\n ")
+          ("p" "Post" plain
+                (file create-blog-post)
+                (file "~/.doom.d/post.orgcaptmpl")))
         org-agenda-custom-commands
                 '(("p" "Plan today"
                    ((agenda)
@@ -263,6 +266,12 @@
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-code-indent-offset 2))
+
+(defun create-blog-post ()
+        "Create blog post"
+        (interactive)
+        (let ((name (read-string "Post title: ")))
+        (expand-file-name (concat (format-time-string "%Y-%m-%d") "-" (format "%s.md" name)) "~/Documents/myjekyllblog/_posts/")))
 
 
 (add-hook 'before-save-hook 'gofmt-before-save)
