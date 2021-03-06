@@ -166,8 +166,8 @@
         deft-recursive t))
 
 (setq url-proxy-services
-      '(("http"     . "127.0.0.1:12333")
-	("https"     . "127.0.0.1:12333")))
+      '(("http"     . "127.0.0.1:10080")
+	("https"     . "127.0.0.1:10080")))
 
 (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
 		      ("melpa" . "http://elpa.emacs-china.org/melpa/")))
