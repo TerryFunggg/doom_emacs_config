@@ -271,7 +271,10 @@
         "Create blog post"
         (interactive)
         (let ((name (read-string "Post title: ")))
-        (expand-file-name (concat (format-time-string "%Y-%m-%d") "-" (format "%s.md" name)) "~/Documents/myjekyllblog/_posts/")))
+          (expand-file-name
+           (concat
+            (format-time-string "%Y-%m-%d") "-" (format "%s.md" name))
+           "~/Documents/myjekyllblog/_posts/")))
 
 
 (add-hook 'before-save-hook 'gofmt-before-save)
