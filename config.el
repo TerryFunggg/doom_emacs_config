@@ -168,9 +168,9 @@
         deft-directory "~/Documents/org/org_notes/"
         deft-recursive t))
 
-(setq url-proxy-services
-      '(("http"     . "127.0.0.1:12333")
-	("https"     . "127.0.0.1:12333")))
+;; (setq url-proxy-services
+;;       '(("http"     . "127.0.0.1:8001")
+;; 	("https"     . "127.0.0.1:8001")))
 
 (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
 		      ("melpa" . "http://elpa.emacs-china.org/melpa/")))
@@ -278,3 +278,33 @@
 
 
 (add-hook 'before-save-hook 'gofmt-before-save)
+
+;; (eval-after-load 'js2-mode
+;;   '(add-hook 'js2-mode-hook
+;;              (lambda ()
+;;                (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+
+;; (eval-after-load 'js
+;;   '(add-hook 'js-mode-hook
+;;              (lambda ()
+;;                (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+
+;; (eval-after-load 'json-mode
+;;   '(add-hook 'json-mode-hook
+;;              (lambda ()
+;;                (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+
+;; (eval-after-load 'sgml-mode
+;;   '(add-hook 'html-mode-hook
+;;              (lambda ()
+;;                (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
+
+;; (eval-after-load 'web-mode
+;;   '(add-hook 'web-mode-hook
+;;              (lambda ()
+;;                (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
+
+;; (eval-after-load 'css-mode
+;;   '(add-hook 'css-mode-hook
+;;              (lambda ()
+;;                (add-hook 'before-save-hook 'web-beautify-css-buffer t t))))
