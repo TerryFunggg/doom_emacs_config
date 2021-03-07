@@ -203,6 +203,10 @@
       :n
       "j c" 'evil-avy-goto-char-timer)
 
+(map! :desc "upcase char"
+      :m
+      "gsu" 'upcase-char)
+
 (after! undo-tree
   (setq undo-tree-auto-save-history nil))
 
