@@ -21,7 +21,7 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "Source Code Pro" :size 16 :weight 'normal))
+(setq doom-font (font-spec :family "Source Code Pro" :size 18 :weight 'normal))
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
@@ -168,9 +168,9 @@
         deft-directory "~/Documents/org/org_notes/"
         deft-recursive t))
 
-(setq url-proxy-services
-      '(("http"     . "127.0.0.1:10080")
-	("https"     . "127.0.0.1:10080")))
+;; (setq url-proxy-services
+;;       '(("http"     . "127.0.0.1:8001")
+;; 	("https"     . "127.0.0.1:8001")))
 
 (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
 		      ("melpa" . "http://elpa.emacs-china.org/melpa/")))
@@ -202,6 +202,10 @@
       :desc "Go to char(s)"
       :n
       "j c" 'evil-avy-goto-char-timer)
+
+(map! :desc "upcase char"
+      :m
+      "gsu" 'upcase-char)
 
 (after! undo-tree
   (setq undo-tree-auto-save-history nil))
@@ -278,3 +282,33 @@
 
 
 (add-hook 'before-save-hook 'gofmt-before-save)
+
+;; (eval-after-load 'js2-mode
+;;   '(add-hook 'js2-mode-hook
+;;              (lambda ()
+;;                (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+
+;; (eval-after-load 'js
+;;   '(add-hook 'js-mode-hook
+;;              (lambda ()
+;;                (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+
+;; (eval-after-load 'json-mode
+;;   '(add-hook 'json-mode-hook
+;;              (lambda ()
+;;                (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
+
+;; (eval-after-load 'sgml-mode
+;;   '(add-hook 'html-mode-hook
+;;              (lambda ()
+;;                (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
+
+;; (eval-after-load 'web-mode
+;;   '(add-hook 'web-mode-hook
+;;              (lambda ()
+;;                (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
+
+;; (eval-after-load 'css-mode
+;;   '(add-hook 'css-mode-hook
+;;              (lambda ()
+;;                (add-hook 'before-save-hook 'web-beautify-css-buffer t t))))
