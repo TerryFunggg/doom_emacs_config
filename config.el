@@ -280,7 +280,8 @@
             (org-read-date) "-" (format "%s.md" name))
            "~/Documents/myjekyllblog/_posts/")))
 
-
+;; (use-package! snails :load-path "lisp/snails")
+(add-hook 'before-save-hook 'lsp-format-buffer)
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; (eval-after-load 'js2-mode
