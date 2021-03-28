@@ -51,6 +51,7 @@
 (package! evil-multiedit)
 (package! org-roam)
 (package! org-roam-server)
+(package! jsx-mode)
 (package! prettier-js)
 (package! plantuml-mode)
 ;;(package! web-beautify)
