@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name:react-create-funciton-component 
+# uuid: rcfc
+# key: rcfc
+# condition: t
+# --
+import React from 'react'
+
+export default function $1 {
+    return (
+        <div>
+            $0
+        </div>
+    );
+}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: typescript-import
+# uuid: timp
+# key: imp
+# condition: t
+# --
+import $0 from '$1'
