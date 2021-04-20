@@ -26,7 +26,8 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; Dark theme :
-(setq doom-theme 'doom-horizon)
+(setq doom-theme 'doom-material)
+;;(setq doom-theme 'doom-horizon)
 ;;(setq doom-theme 'doom-monokai-pro)
 ;;(setq doom-theme 'doom-dracula)
 ;;(setq doom-theme 'doom-nord)
