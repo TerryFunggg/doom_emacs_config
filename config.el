@@ -281,7 +281,8 @@
            "~/Documents/myjekyllblog/_posts/")))
 
 
-(add-to-list 'auto-mode-alist '("\\.js.*$" . rjsx-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?$" . rjsx-mode))
+(setq-local indent-line-function 'js-jsx-indent-line)
 ;;(add-hook 'rjsx-mode-hook 'prettier-js-mode)
 ;; (use-package! snails :load-path "lisp/snails")
 (add-hook 'before-save-hook 'lsp-format-buffer)
