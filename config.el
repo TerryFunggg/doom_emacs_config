@@ -286,7 +286,8 @@
 (setq-local indent-line-function 'js-jsx-indent-line)
 ;;(add-hook 'rjsx-mode-hook 'prettier-js-mode)
 ;; (use-package! snails :load-path "lisp/snails")
-(add-hook 'before-save-hook 'lsp-format-buffer)
+(add-hook 'web-mode-hook 'prettier-js-mode)
+(add-hook 'typescript-tsx-mode-hook 'prettier-js-mode)
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; (eval-after-load 'js2-mode
