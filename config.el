@@ -59,7 +59,22 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-(display-time)
+(use-package emacs
+  :preface
+  (defvar ian/indent-width 2)
+  :config
+  (setq
+    ring-bell-function 'ignore
+    frame-resize-pixelwise t
+    default-directory "~/")
+
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (display-time)
+
+  ;; increase line space for better readability
+  (setq-default line-spacing 3))
+
 (add-hook! 'org-mode-hook (company-mode -1))
 (add-hook! 'org-capture-mode-hook (company-mode -1))
 
