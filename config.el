@@ -385,7 +385,8 @@
 (global-set-key "\C-c\C-e" 'eval-and-replace)
 
 (defun my/today ()
-  (shell-command-to-string "echo -n $(date +%Y-%m-%d)"))
+  (interactive)
+  (insert (shell-command-to-string "echo -n $(date +%Y-%m-%d)")))
 
 (defun my/semicolon ()
   (interactive)
