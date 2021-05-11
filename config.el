@@ -287,7 +287,7 @@
 
 (map! :desc "upcase char"
       :m
-      "gsu" 'upcase-char)
+      "g s u" 'upcase-char)
 
 (after! undo-tree
   (setq undo-tree-auto-save-history nil))
