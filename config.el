@@ -369,6 +369,20 @@
 (add-hook 'typescript-tsx-mode-hook 'prettier-js-mode)
 (add-hook 'before-save-hook 'gofmt-before-save)
 
+
+;; Thanks magars
+(defun eval-and-replace ()
+  "Replace the preceding sexp with its value."
+  (interactive)
+  (backward-kill-sexp)
+  (condition-case nil
+      (prin1 (eval (read (current-kill 0)))
+             (current-buffer))
+    (error (message "Invalid expression")
+           (insert (current-kill 0)))))
+(global-set-key "\C-c\C-e" 'eval-and-replace)
+
+
 ;; (eval-after-load 'js2-mode
 ;;   '(add-hook 'js2-mode-hook
 ;;              (lambda ()
