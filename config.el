@@ -371,6 +371,42 @@
 (add-hook 'typescript-tsx-mode-hook 'prettier-js-mode)
 (add-hook 'before-save-hook 'gofmt-before-save)
 
+;; Hydra config
+(defhydra hydra-web-mode (:color blue :quit-key "q" :hint nil)
+"
+Navigate^^^^                 Element^^                    Attribute^^     Other
+[_j_/_k_] next/prev element  [_c_] clone                  [_@_] insert    [_p_] xpath (display path)
+[_J_/_K_] next/prev sibling  [_d_] vanish (keep content)  [_!_] delete    [_q_] quit
+[_h_/_l_] parent/child       [_D_] kill (inkl. content)
+[_a_/_e_] head/end element   [_r_] rename
+[_f_] fold/unfold            [_w_] wrap
+                             [_i_] insert element
+                             [_s_] select(tag,content)
+"
+  ("j" web-mode-element-next :exit nil)
+  ("k" web-mode-element-previous :exit nil)
+  ("J"  web-mode-element-sibling-next :exit nil)
+  ("K"  web-mode-element-sibling-previous :exit nil)
+  ("h"  web-mode-element-parent :exit nil)
+  ("l"  web-mode-element-child :exit nil)
+  ("a" web-mode-element-beginning :exit nil)
+  ("e" web-mode-element-end :exit nil)
+  ("c" web-mode-element-clone :exit nil)
+  ("f" web-mode-element-children-fold-or-unfold :exit nil)
+  ("i" web-mode-element-insert :exit nil)
+  ("D" web-mode-element-kill :exit nil)
+  ("d" web-mode-element-vanish :exit nil)
+  ;;("m" web-mode-element-mute-blanks)
+  ("w" web-mode-element-wrap :exit nil)
+  ("r" web-mode-element-rename :exit nil)
+  ("s" web-mode-element-select :exit nil)
+  ;; attribute
+  ("@" web-mode-attribute-insert :exit nil)
+  ("!" web-mode-attribute-kill :exit nil)
+  ; other
+  ("p" web-mode-dom-xpath :exit nil)
+  ("q" nil "quit" :exit t))
+(define-key web-mode-map (kbd "C-c .") 'hydra-web-mode/body)
 
 ;; Thanks magars
 (defun eval-and-replace ()
