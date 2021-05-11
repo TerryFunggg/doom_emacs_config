@@ -283,6 +283,8 @@
       :n
       "j c" 'evil-avy-goto-char-timer)
 
+(setq avy-timeout-seconds 0.2)
+
 (map! :desc "upcase char"
       :m
       "gsu" 'upcase-char)
