@@ -137,6 +137,12 @@
     :n
     "f o" #'dired-jump-other-window)
 
+;; coompany config
+(after! company
+  (setq company-idle-delay 0.2
+        company-minimum-prefix-length 2)
+  (add-hook 'evil-normal-state-entry-hook #'company-abort))
+
 
 (add-hook! 'org-mode-hook (company-mode -1))
 (add-hook! 'org-capture-mode-hook (company-mode -1))
