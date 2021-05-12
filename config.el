@@ -320,15 +320,16 @@
                :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
                :immediate-finish t
                :unnarrowed t)
-        ("g" "group")
-        ("ga" "Group A" plain (function org-roam-capture--get-point)
-         "%?"
-         :file-name "%<%Y%m%d%H%M%S>-${slug}"
-         :head "#+title: ${title}\n#+roam_alias:\n\n")
-        ("gb" "Group B" plain (function org-roam-capture--get-point)
-         "%?"
-         :file-name "%<%Y%m%d%H%M%S>-${slug}"
-         :head "#+title: ${title}\n#+roam_alias:\n\n"))))
+        ;; ("g" "group")
+        ;; ("ga" "Group A" plain (function org-roam-capture--get-point)
+        ;;  "%?"
+        ;;  :file-name "%<%Y%m%d%H%M%S>-${slug}"
+        ;;  :head "#+title: ${title}\n#+roam_alias:\n\n")
+        ;; ("gb" "Group B" plain (function org-roam-capture--get-point)
+        ;;  "%?"
+        ;;  :file-name "%<%Y%m%d%H%M%S>-${slug}"
+        ;;  :head "#+title: ${title}\n#+roam_alias:\n\n")
+        )))
 
 (add-to-list 'org-roam-capture-ref-templates
              '("a" "Annotation" plain (function org-roam-capture--get-point)
