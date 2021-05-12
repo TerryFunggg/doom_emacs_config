@@ -377,11 +377,11 @@
 Navigate^^^^                 Element^^                    Attribute^^     Other
 [_j_/_k_] next/prev element  [_c_] clone                  [_@_] insert    [_p_] xpath (display path)
 [_J_/_K_] next/prev sibling  [_d_] vanish (keep content)  [_!_] delete    [_q_] quit
-[_h_/_l_] parent/child       [_D_] kill (inkl. content)
-[_a_/_e_] head/end element   [_r_] rename
-[_f_] fold/unfold            [_w_] wrap
-                             [_i_] insert element
-                             [_s_] select(tag,content)
+[_h_/_l_] parent/child       [_D_] kill (inkl. content)   [_[_] next
+[_a_/_e_] head/end element   [_r_] rename                 [_]_] previous
+[_f_] fold/unfold^^          [_w_] wrap
+^^^^                         [_i_] insert element
+^^^^                         [_s_] select(tag,content)
 "
   ("j" web-mode-element-next :exit nil)
   ("k" web-mode-element-previous :exit nil)
@@ -403,6 +403,8 @@ Navigate^^^^                 Element^^                    Attribute^^     Other
   ;; attribute
   ("@" web-mode-attribute-insert :exit nil)
   ("!" web-mode-attribute-kill :exit nil)
+  ("]" web-mode-attribute-next :exit nil)
+  ("[" web-mode-attribute-previous :exit nil)
   ; other
   ("p" web-mode-dom-xpath :exit nil)
   ("q" nil "quit" :exit t))
