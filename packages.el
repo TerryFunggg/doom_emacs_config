@@ -54,5 +54,6 @@
 (package! jsx-mode)
 (package! prettier-js)
 (package! restclient)
+(package! openwith)
 (package! plantuml-mode)
 ;;(package! web-beautify)

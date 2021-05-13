@@ -254,6 +254,28 @@
         deft-directory "~/Documents/org/org_notes/"
         deft-recursive t))
 
+(use-package! openwith
+  :after-call (pre-command-hook after-find-file dired-before-readin-hook)
+  :config
+  (openwith-mode 1))
+(after! openwith
+  (setq openwith-associations
+        (list
+         (list (openwith-make-extension-regexp
+                '("mpg" "mpeg" "mp3" "mp4"
+                  "avi" "wmv" "wav" "mov" "flv"
+                  "ogm" "ogg" "mkv"))
+               "vlc"
+               '(file))
+         (list (openwith-make-extension-regexp
+                '("png" "gif" "jpeg" "jpg"))
+               "feh"
+               '(file))
+         (list (openwith-make-extension-regexp
+                '("pdf"))
+               "evince"
+               '(file))))
+)
 ;; (setq url-proxy-services
 ;;       '(("http"     . "127.0.0.1:8001")
 ;; 	("https"     . "127.0.0.1:8001")))
