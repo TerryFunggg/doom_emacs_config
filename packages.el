@@ -55,5 +55,6 @@
 (package! prettier-js)
 (package! restclient)
 (package! openwith)
+(package! dumb-jump)
 (package! plantuml-mode)
 ;;(package! web-beautify)
