@@ -53,5 +53,6 @@
 (package! org-roam-server)
 (package! jsx-mode)
 (package! prettier-js)
+(package! restclient)
 (package! plantuml-mode)
 ;;(package! web-beautify)
