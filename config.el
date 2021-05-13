@@ -143,6 +143,17 @@
         company-minimum-prefix-length 2)
   (add-hook 'evil-normal-state-entry-hook #'company-abort))
 
+(use-package! lsp-ui
+  :config
+  (setq lsp-ui-sideline-show-diagnostics nil
+        lsp-ui-sideline-show-code-actions nil)
+  :commands
+  lsp-ui-mode)
+
+(use-package! lsp-mode
+  :config
+  (setq lsp-idle-delay 0.500
+        lsp-enable-file-watchers nil))
 
 (add-hook! 'org-mode-hook (company-mode -1))
 (add-hook! 'org-capture-mode-hook (company-mode -1))
