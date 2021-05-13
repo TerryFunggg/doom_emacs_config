@@ -360,14 +360,6 @@
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-code-indent-offset 2))
 
-(defun create-blog-post ()
-        "Create blog post"
-        (interactive)
-        (let ((name (read-string "Post title: ")))
-          (expand-file-name
-           (concat 
-            (org-read-date) "-" (format "%s.md" name))
-           "~/Documents/myjekyllblog/_posts/")))
 
 
 (add-to-list 'auto-mode-alist '("\\.jsx?$" . rjsx-mode))
@@ -438,6 +430,15 @@ Navigate^^^^                 Element^^                    Attribute^^     Other
   (end-of-line)
   (insert ";"))
 (global-set-key "\C-c\;" 'my/semicolon)
+
+(defun create-blog-post ()
+        "Create blog post"
+        (interactive)
+        (let ((name (read-string "Post title: ")))
+          (expand-file-name
+           (concat
+            (org-read-date) "-" (format "%s.md" name))
+           "~/Documents/myjekyllblog/_posts/")))
 
 ;; (eval-after-load 'js2-mode
 ;;   '(add-hook 'js2-mode-hook
