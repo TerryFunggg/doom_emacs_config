@@ -331,6 +331,8 @@
 (after! undo-tree
   (setq undo-tree-auto-save-history nil))
 
+(setq-default evil-escape-key-sequence "jf")
+(setq-default evil-escape-delay 0.2)
 ;; org roam config
 (use-package! org-roam
   :init
