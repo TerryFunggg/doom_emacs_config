@@ -393,7 +393,8 @@
   (setq web-mode-indent-level 2)
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2))
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-enable-current-element-highlight t))
 
 
 
@@ -443,6 +444,8 @@ Navigate^^^^                 Element^^                    Attribute^^     Other
   ("p" web-mode-dom-xpath :exit nil)
   ("q" nil "quit" :exit t))
 (define-key web-mode-map (kbd "C-c .") 'hydra-web-mode/body)
+(eval-after-load "web-mode"
+  '(set-face-background 'web-mode-current-element-highlight-face "#98f5ff"))
 
 (defhydra dumb-jump-hydra (:color blue :columns 3)
     "Dumb Jump"
