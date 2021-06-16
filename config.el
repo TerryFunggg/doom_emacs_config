@@ -209,7 +209,10 @@
         org-agenda-custom-commands
                 '(("p" "Plan today"
                    ((agenda)
-                    (tags-todo "PROJECT"))))
+                    (tags-todo "PROJECT")))
+                  ("j" . "Jobs")
+                  ("ja" "Important & Emergency" tags-todo "+PRIORITY=\"A\"")
+                  ("jb" "Important & Not Emergency" tags-todo "+PRIORITY=\"B\""))
         org-refile-targets '(("~/Documents/org/TODO.org" :level . 1)
                            ("~/Documents/org/Inbox.org" :level . 1)
                            ("~/Documents/org/Done.org" :level . 1))
