@@ -27,13 +27,14 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; Dark theme :
-(setq doom-theme 'doom-material)
+;;(setq doom-theme 'doom-material)
 ;;(setq doom-theme 'doom-horizon)
 ;;(setq doom-theme 'doom-monokai-pro)
 ;;(setq doom-theme 'doom-dracula)
 ;;(setq doom-theme 'doom-nord)
 ;;
-;;For org/writing mode
+;; Light theme
+(setq doom-theme 'doom-one-light)
 ;;(setq doom-theme 'leuven)
 ;;(setq doom-theme 'doom-solarized-light)
 ;;(setq doom-theme 'doom-flatwhite)
