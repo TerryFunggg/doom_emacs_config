@@ -496,6 +496,13 @@ Navigate^^^^                 Element^^                    Attribute^^     Other
             (org-read-date) "-" (format "%s.md" name))
            "~/Documents/myjekyllblog/_posts/")))
 
+;; (use-package! ruby-mode
+;;   :init
+;;   (progn
+;;     (add-hook 'before-save-hook #'lsp-format-buffer t)))
+
+(add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
+
 ;; (eval-after-load 'js2-mode
 ;;   '(add-hook 'js2-mode-hook
 ;;              (lambda ()
