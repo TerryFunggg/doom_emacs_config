@@ -111,9 +111,9 @@
 
        :lang
        ;;agda              ; types of types of types of types...
-       ;;cc                ; C/C++/Obj-C madness
+       (cc +lsp)                ; C/C++/Obj-C madness
        ;;clojure           ; java with a lisp
-       ;;common-lisp       ; if you've seen one lisp, you've seen them all
+       common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
        ;;csharp            ; unity, .NET, and mono shenanigans
@@ -148,6 +148,7 @@
        ;;ocaml             ; an objective camel
        (org +roam
             +journal
+            +pomodoro
             +pretty)               ; organize your plain life in plain text
        (php +lsp)                ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more

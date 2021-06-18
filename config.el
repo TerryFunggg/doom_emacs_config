@@ -288,7 +288,7 @@
                '(file))
          (list (openwith-make-extension-regexp
                 '("pdf"))
-               "evince"
+               "zathura"
                '(file))))
 )
 ;; (setq url-proxy-services
