@@ -27,14 +27,14 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; Dark theme :
-;;(setq doom-theme 'doom-material)
+(setq doom-theme 'doom-material)
 ;;(setq doom-theme 'doom-horizon)
 ;;(setq doom-theme 'doom-monokai-pro)
 ;;(setq doom-theme 'doom-dracula)
 ;;(setq doom-theme 'doom-nord)
 ;;
 ;; Light theme
-(setq doom-theme 'doom-one-light)
+;;(setq doom-theme 'doom-one-light)
 ;;(setq doom-theme 'leuven)
 ;;(setq doom-theme 'doom-solarized-light)
 ;;(setq doom-theme 'doom-flatwhite)
@@ -292,8 +292,8 @@
                '(file))))
 )
 ;; (setq url-proxy-services
-;;       '(("http"     . "127.0.0.1:8001")
-;; 	("https"     . "127.0.0.1:8001")))
+;;        '(("http"     . "127.0.0.1:8001")
+;;  	("https"     . "127.0.0.1:8001")))
 
 (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
 		      ("melpa" . "http://elpa.emacs-china.org/melpa/")))
@@ -406,7 +406,6 @@
 (setq-local indent-line-function 'js-jsx-indent-line)
 ;;(add-hook 'rjsx-mode-hook 'prettier-js-mode)
 ;; (use-package! snails :load-path "lisp/snails")
-(add-hook 'web-mode-hook 'prettier-js-mode)
 (add-hook 'typescript-tsx-mode-hook 'prettier-js-mode)
 (add-hook 'before-save-hook 'gofmt-before-save)
 
@@ -532,3 +531,6 @@ Navigate^^^^                 Element^^                    Attribute^^     Other
 ;;   '(add-hook 'css-mode-hook
 ;;              (lambda ()
 ;;                (add-hook 'before-save-hook 'web-beautify-css-buffer t t))))
+(setq inferior-lisp-program "sbcl");
+(add-to-list 'slime-contribs 'slime-repl)
+(toggle-frame-fullscreen)

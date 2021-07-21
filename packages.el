@@ -56,5 +56,8 @@
 (package! restclient)
 (package! openwith)
 (package! dumb-jump)
+(package! slime)
+(package! magit-section)
+(package! olivetti)
 (package! plantuml-mode)
 ;;(package! web-beautify)
