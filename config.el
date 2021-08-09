@@ -189,6 +189,7 @@
   (evil-multiedit-default-keybinds))
 
 ;; Org config
+(setq my/org-agenda-directory "~/Documents/org/")
 (after! org
   (map! :map org-mode-map
         :n "M-j" #'org-metadown
@@ -199,9 +200,9 @@
         org-agenda-start-day "+0d"
         org-todo-keywords '((sequencep "TODO(t)" "HOLD(h)" "|" "DONE(d)" "CANCELLED(c)"))
         org-capture-templates
-        '(("i" "Todo Inbox" entry (file "~/Documents/org/Inbox.org")
-           "* %?\n")
-          ("q" "Quick Note" entry (file "~/Documents/org/Drafts.org")
+        '(("i" "Inbox" entry (file (concat my/org-agenda-directory "Inbox.org"))
+           "* TODO %?")
+          ("q" "Quick Note" entry (file (concat my/org-agenda-directory "Inbox.org"))
            "* %?\n %T\n ")
           ("p" "Post" plain
                 (file create-blog-post)
@@ -213,13 +214,14 @@
                   ("j" . "Jobs")
                   ("ja" "Important & Emergency" tags-todo "+PRIORITY=\"A\"")
                   ("jb" "Important & Not Emergency" tags-todo "+PRIORITY=\"B\""))
-        org-refile-targets '(("~/Documents/org/TODO.org" :level . 1)
-                           ("~/Documents/org/Inbox.org" :level . 1)
-                           ("~/Documents/org/Done.org" :level . 1))
-       
-        org-agenda-files (list "~/Documents/org/TODO.org"
-                               "~/Documents/org/Habit.org"
-                               "~/Documents/org/Project.org")))
+        ;; org-refile-targets '(("~/Documents/org/TODO.org" :level . 1)
+        ;;                    ("~/Documents/org/Inbox.org" :level . 1)
+        ;;                    ("~/Documents/org/Done.org" :level . 1))
+
+        org-agenda-files (list (concat my/org-agenda-directory "TODO.org")
+                               (concat my/org-agenda-directory "Inbox.org")
+                               (concat my/org-agenda-directory "Habit.org")
+                               (concat my/org-agenda-directory "Project.org"))))
 
 ;; super-agende-mode
  (use-package! org-super-agenda
