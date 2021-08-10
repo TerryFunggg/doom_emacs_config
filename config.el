@@ -228,6 +228,16 @@
                                (concat my/org-agenda-directory "repeaters.org")
                                (concat my/org-agenda-directory "project.org"))))
 
+(defun my/org-agenda-process-inbox-item ()
+  "Process a single item in the org-agenda"
+  (interactive)
+  (org-with-wide-buffer
+   (org-agenda-set-tags)
+   (org-agenda-priority)
+   (org-agenda-refile nil nil t)))
+
+(define-key! org-agenda-mode-map "r" 'my/org-agenda-process-inbox-item)
+
 ;;super-agende-mode
  (use-package! org-super-agenda
    :after org-agenda
