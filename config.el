@@ -222,10 +222,10 @@
         ;;                    ("~/Documents/org/Inbox.org" :level . 1)
         ;;                    ("~/Documents/org/Done.org" :level . 1))
 
-        org-agenda-files (list (concat my/org-agenda-directory "TODO.org")
-                               (concat my/org-agenda-directory "Inbox.org")
-                               (concat my/org-agenda-directory "Habit.org")
-                               (concat my/org-agenda-directory "Project.org"))))
+        org-agenda-files (list (concat my/org-agenda-directory "next.org")
+                               (concat my/org-agenda-directory "inbox.org")
+                               (concat my/org-agenda-directory "repeaters.org")
+                               (concat my/org-agenda-directory "project.org"))))
 
 ;; super-agende-mode
  (use-package! org-super-agenda
