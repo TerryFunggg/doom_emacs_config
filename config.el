@@ -204,9 +204,9 @@
                               ("REPEAT" . ?r)
                               ("INBOX" . ?i)))
         org-capture-templates
-        '(("i" "Inbox" entry (file (concat my/org-agenda-directory "Inbox.org"))
-           "* TODO %?")
-          ("q" "Quick Note" entry (file (concat my/org-agenda-directory "Inbox.org"))
+        '(("i" "Inbox" entry (file "~/Documents/org/inbox.org")
+           "* TODO %? :INBOX:")
+          ("q" "Quick Note" entry (file "~/Documents/org/Drafts.org")
            "* %?\n %T\n ")
           ("p" "Post" plain
                 (file create-blog-post)
