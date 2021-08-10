@@ -227,31 +227,21 @@
                                (concat my/org-agenda-directory "repeaters.org")
                                (concat my/org-agenda-directory "project.org"))))
 
-;; super-agende-mode
+;;super-agende-mode
  (use-package! org-super-agenda
    :after org-agenda
    :init
    (setq org-super-agenda-groups
        '((:name "Today"
-                :time-grid t
-                :order 1
-                :todo "TODAY")
+                :time-grid t)
+         (:name "In Progress"
+                :todo "NEXT")
          (:name "Important"
-                :order 2
                 :priority "A")
-         (:name "Project"
-                :order 3
-                :tag "PROJECT")
-         (:order-multi (4 (:name "To-Read"
-                                 :tag ("EBOOK" "BOOK" "WEBPAGE"))
-                          (:name "To-Learn"
-                                 :tag "LEARN")
-                          (:name "Habit"
-                                 :tag "HABIT")
-                          (:name "Personal"
-                                 :tag "@ME")))
-         (:todo "HOLD" :order 5)
-         (:name "Overdue" :deadline past :order 6)))
+         (:name "To Refile"
+                :tag "INBOX")
+         (:name "Repeat Event"
+                :tag "REPEAT")))
 
        :config
        (org-super-agenda-mode))
