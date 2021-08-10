@@ -208,7 +208,7 @@
                               ("project" . ?p)))
         org-capture-templates
         '(("i" "Inbox" entry (file "~/Documents/org/inbox.org")
-           "* TODO %? :INBOX:")
+           "* TODO %?")
           ("q" "Quick Note" entry (file "~/Documents/org/Drafts.org")
            "* %?\n %T\n ")
           ("p" "Post" plain
