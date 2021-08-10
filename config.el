@@ -234,6 +234,7 @@
   "Process a single item in the org-agenda"
   (interactive)
   (org-with-wide-buffer
+   (org-agenda-todo)
    (org-agenda-set-tags)
    (org-agenda-priority)
    (org-agenda-refile nil nil t)))
@@ -252,9 +253,11 @@
          (:name "Important"
                 :priority "A")
          (:name "To Refile"
-                :tag "INBOX")
+                :todo "TODO")
          (:name "Repeat Event"
-                :tag "REPEAT")))
+          :tag "repeat")
+         (:name "Done"
+                :todo "DONE")))
 
        :config
        (org-super-agenda-mode))
