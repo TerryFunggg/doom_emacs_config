@@ -198,9 +198,10 @@
         org-hide-emphasis-markers t
         org-agenda-span 'day
         org-agenda-start-day "+0d"
-        org-todo-keywords '((sequencep "TODO(t)" "NEXT(n)" "|" "HOLD(h)"))
+        org-todo-keywords '((sequencep "TODO(t)" "NEXT(n)" "|" "DONE(d)" "HOLD(h)"))
         org-tag-alist (quote (("@home" . ?h)
                               ("@office" . ?o)
+                              ("NEXT" . ?n)
                               ("REPEAT" . ?r)
                               ("INBOX" . ?i)))
         org-capture-templates
