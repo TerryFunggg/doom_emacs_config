@@ -215,12 +215,33 @@
                 (file create-blog-post)
                 (file "~/.doom.d/post.orgcaptmpl")))
         org-agenda-custom-commands
-                '(("p" "Plan today"
-                   ((agenda)
-                    (tags-todo "PROJECT")))
-                  ("j" . "Jobs")
-                  ("ja" "Important & Emergency" tags-todo "+PRIORITY=\"A\"")
-                  ("jb" "Important & Not Emergency" tags-todo "+PRIORITY=\"B\""))
+        '(("p" "Agenda"
+           ((agenda ""
+                    ((org-agenda-span 'day)))
+            (todo "NEXT"
+               ((org-agenda-overriding-header "In Progress")
+                (org-agenda-files (list
+                                   (concat my/org-agenda-directory "projects.org")
+                                   (concat my/org-agenda-directory "next.org")))))
+            (todo "TODO"
+               ((org-agenda-overriding-header "Projects")
+                (org-agenda-files (list (concat my/org-agenda-directory "projects.org")))))
+            (todo "TODO"
+               ((org-agenda-overriding-header "One-off Tasks")
+                (org-agenda-files (list (concat my/org-agenda-directory "next.org")))
+                (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))))
+            (todo "TODO"
+               ((org-agenda-overriding-header "To Refile")
+                (org-agenda-files (list (concat my/org-agenda-directory "inbox.org")))))
+            nil)))
+        ;; org-agenda-custom-commands
+        ;; '(("A" "Agenda" my/org-agenda-view)
+        ;;         ("p" "Plan today"
+        ;;            ((agenda)
+        ;;           ("j" . "Jobs")
+        ;;             (tags-todo "PROJECT")))
+        ;;           ("ja" "Important & Emergency" tags-todo "+PRIORITY=\"A\"")
+        ;;           ("jb" "Important & Not Emergency" tags-todo "+PRIORITY=\"B\""))
         org-refile-targets '(("~/Documents/org/inbox.org" :level . 0)
                            ("~/Documents/org/next.org" :level . 0)
                            ("~/Documents/org/done.org" :level . 0))
