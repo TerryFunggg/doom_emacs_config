@@ -250,6 +250,8 @@
                                (concat my/org-agenda-directory "inbox.org")
                                (concat my/org-agenda-directory "repeaters.org")
                                (concat my/org-agenda-directory "project.org"))))
+(with-eval-after-load 'org
+  (add-to-list 'org-modules 'org-habit t))
 
 (defun my/org-agenda-process-inbox-item ()
   "Process a single item in the org-agenda"
