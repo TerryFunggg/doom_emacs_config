@@ -263,25 +263,25 @@
 (define-key! org-agenda-mode-map "r" 'my/org-agenda-process-inbox-item)
 
 ;;super-agende-mode
- (use-package! org-super-agenda
-   :after org-agenda
-   :init
-   (setq org-super-agenda-groups
-       '((:name "Today"
-                :time-grid t)
-         (:name "In Progress"
-                :todo "NEXT")
-         (:name "Important"
-                :priority "A")
-         (:name "To Refile"
-                :todo "TODO")
-         (:name "Repeat Event"
-          :tag "repeat")
-         (:name "Done"
-                :todo "DONE")))
+ ;; (use-package! org-super-agenda
+ ;;   :after org-agenda
+ ;;   :init
+ ;;   (setq org-super-agenda-groups
+ ;;       '((:name "Today"
+ ;;                :time-grid t)
+ ;;         (:name "In Progress"
+ ;;                :todo "NEXT")
+ ;;         (:name "Important"
+ ;;                :priority "A")
+ ;;         (:name "To Refile"
+ ;;                :todo "TODO")
+ ;;         (:name "Repeat Event"
+ ;;          :tag "repeat")
+ ;;         (:name "Done"
+ ;;                :todo "DONE")))
 
-       :config
-       (org-super-agenda-mode))
+ ;;       :config
+ ;;       (org-super-agenda-mode))
 
 ;; Org-brain
 ;; (use-package! org-brain

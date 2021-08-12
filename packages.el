@@ -47,7 +47,7 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
-(package! org-super-agenda)
+;;(package! org-super-agenda)
 (package! evil-multiedit)
 (package! org-roam)
 (package! org-roam-server)
