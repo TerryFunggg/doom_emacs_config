@@ -67,6 +67,7 @@
   (setq
     ring-bell-function 'ignore
     frame-resize-pixelwise t
+    require-final-newline t
     default-directory "~/")
 
   (tool-bar-mode -1)
