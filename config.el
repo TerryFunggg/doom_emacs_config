@@ -27,7 +27,9 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; Dark theme :
-(setq doom-theme 'doom-material)
+(setq doom-theme 'tsdh-light)
+;;(setq doom-theme 'doom-ayu-light)
+;;(setq doom-theme 'doom-material)
 ;;(setq doom-theme 'doom-horizon)
 ;;(setq doom-theme 'doom-monokai-pro)
 ;;(setq doom-theme 'doom-dracula)
@@ -374,57 +376,57 @@
 (setq-default evil-escape-key-sequence "jf")
 (setq-default evil-escape-delay 0.2)
 ;; org roam config
-(use-package! org-roam
-  :init
-  (setq org-roam-directory "~/Documents/org/roam")
+;; (use-package! org-roam
+;;   :init
+;;   (setq org-roam-directory "~/Documents/org/roam")
 
-  :config
-  (setq org-roam-capture-templates
-      '(
-        ("d" "default" plain (function org-roam-capture--get-point)
-         "%?"
-         :file-name "%<%Y%m%d%H%M%S>-${slug}"
-         :head "#+title: ${title}\n#+roam_alias:\n#+roam_tags: \n\n")
-        ("r" "Read Note" plain (function org-roam-capture--get-point)
-         "* What\n\n* Why"
-         :file-name "Read-Note-${slug}"
-         :head "#+title: ${title}\n#+roam_alias:\n#+roam_tags: \n\n")
-        ("a" "Annotation" plain (function org-roam-capture--get-point)
-               "%U ${body}\n"
-               :file-name "${slug}"
-               :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
-               :immediate-finish t
-               :unnarrowed t)
-        ;; ("g" "group")
-        ;; ("ga" "Group A" plain (function org-roam-capture--get-point)
-        ;;  "%?"
-        ;;  :file-name "%<%Y%m%d%H%M%S>-${slug}"
-        ;;  :head "#+title: ${title}\n#+roam_alias:\n\n")
-        ;; ("gb" "Group B" plain (function org-roam-capture--get-point)
-        ;;  "%?"
-        ;;  :file-name "%<%Y%m%d%H%M%S>-${slug}"
-        ;;  :head "#+title: ${title}\n#+roam_alias:\n\n")
-        )))
+;;   :config
+;;   (setq org-roam-capture-templates
+;;       '(
+;;         ("d" "default" plain (function org-roam-capture--get-point)
+;;          "%?"
+;;          :file-name "%<%Y%m%d%H%M%S>-${slug}"
+;;          :head "#+title: ${title}\n#+roam_alias:\n#+roam_tags: \n\n")
+;;         ("r" "Read Note" plain (function org-roam-capture--get-point)
+;;          "* What\n\n* Why"
+;;          :file-name "Read-Note-${slug}"
+;;          :head "#+title: ${title}\n#+roam_alias:\n#+roam_tags: \n\n")
+;;         ("a" "Annotation" plain (function org-roam-capture--get-point)
+;;                "%U ${body}\n"
+;;                :file-name "${slug}"
+;;                :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
+;;                :immediate-finish t
+;;                :unnarrowed t)
+;;         ;; ("g" "group")
+;;         ;; ("ga" "Group A" plain (function org-roam-capture--get-point)
+;;         ;;  "%?"
+;;         ;;  :file-name "%<%Y%m%d%H%M%S>-${slug}"
+;;         ;;  :head "#+title: ${title}\n#+roam_alias:\n\n")
+;;         ;; ("gb" "Group B" plain (function org-roam-capture--get-point)
+;;         ;;  "%?"
+;;         ;;  :file-name "%<%Y%m%d%H%M%S>-${slug}"
+;;         ;;  :head "#+title: ${title}\n#+roam_alias:\n\n")
+;;         )))
 
-(add-to-list 'org-roam-capture-ref-templates
-             '("a" "Annotation" plain (function org-roam-capture--get-point)
-               "%U ${body}\n"
-               :file-name "${slug}"
-               :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
-               :immediate-finish t
-               :unnarrowed t))
+;; (add-to-list 'org-roam-capture-ref-templates
+;;              '("a" "Annotation" plain (function org-roam-capture--get-point)
+;;                "%U ${body}\n"
+;;                :file-name "${slug}"
+;;                :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
+;;                :immediate-finish t
+;;                :unnarrowed t))
 
-(use-package! org-roam-server
-  :config
-  (setq org-roam-server-host "127.0.0.1"
-      org-roam-server-port 9090
-      org-roam-server-export-inline-images t
-      org-roam-server-authenticate nil
-      org-roam-server-network-label-truncate t
-      org-roam-server-network-label-truncate-length 60
-      org-roam-server-network-label-wrap-length 20))
+;; (use-package! org-roam-server
+;;   :config
+;;   (setq org-roam-server-host "127.0.0.1"
+;;       org-roam-server-port 9090
+;;       org-roam-server-export-inline-images t
+;;       org-roam-server-authenticate nil
+;;       org-roam-server-network-label-truncate t
+;;       org-roam-server-network-label-truncate-length 60
+;;       org-roam-server-network-label-wrap-length 20))
 ;;(org-roam-server-mode)
-(require 'org-roam-protocol)
+;;(require 'org-roam-protocol)
 
 ;; Web mode config
 (use-package! web-mode
