@@ -27,7 +27,7 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; Dark theme :
-(setq doom-theme 'tsdh-light)
+(setq doom-theme 'doom-xcode)
 ;;(setq doom-theme 'doom-ayu-light)
 ;;(setq doom-theme 'doom-material)
 ;;(setq doom-theme 'doom-horizon)
@@ -43,7 +43,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type nil)
+(setq display-line-numbers-type 'relative)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
