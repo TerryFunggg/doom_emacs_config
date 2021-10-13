@@ -82,6 +82,19 @@
 ;; dashboard image
 ;;(setq fancy-splash-image "~/.doom.d/logo.png")
 
+(use-package nyan-mode
+  :defer t
+  :config
+  (setq nyan-cat-face-number 1
+        ;; nyan-animate-nyancat t
+        nyan-minimum-window-width 100
+        nyan-wavy-trail nil))
+
+(setq mode-line-format
+      (list
+       '(:eval (list (nyan-mode)))
+       ))
+
 (use-package recentf
   :defer t
   :ensure nil
@@ -113,7 +126,7 @@
 
 (use-package dired
   :defer t
-  :ensure nil
+  ;; :ensure nil
   :custom
   ;; Always delete and copy recursively
   (dired-recursive-deletes 'always)

@@ -60,4 +60,5 @@
 (package! magit-section)
 (package! olivetti)
 (package! plantuml-mode)
+(package! nyan-mode)
 ;;(package! web-beautify)
