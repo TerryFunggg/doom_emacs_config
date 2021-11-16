@@ -389,45 +389,45 @@
 (setq-default evil-escape-key-sequence "jf")
 (setq-default evil-escape-delay 0.2)
 ;; org roam config
-;; (use-package! org-roam
-;;   :init
-;;   (setq org-roam-directory "~/Documents/org/roam")
+(use-package! org-roam
+  :init
+  (setq org-roam-directory "~/Documents/org/roam")
 
-;;   :config
-;;   (setq org-roam-capture-templates
-;;       '(
-;;         ("d" "default" plain (function org-roam-capture--get-point)
-;;          "%?"
-;;          :file-name "%<%Y%m%d%H%M%S>-${slug}"
-;;          :head "#+title: ${title}\n#+roam_alias:\n#+roam_tags: \n\n")
-;;         ("r" "Read Note" plain (function org-roam-capture--get-point)
-;;          "* What\n\n* Why"
-;;          :file-name "Read-Note-${slug}"
-;;          :head "#+title: ${title}\n#+roam_alias:\n#+roam_tags: \n\n")
-;;         ("a" "Annotation" plain (function org-roam-capture--get-point)
-;;                "%U ${body}\n"
-;;                :file-name "${slug}"
-;;                :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
-;;                :immediate-finish t
-;;                :unnarrowed t)
-;;         ;; ("g" "group")
-;;         ;; ("ga" "Group A" plain (function org-roam-capture--get-point)
-;;         ;;  "%?"
-;;         ;;  :file-name "%<%Y%m%d%H%M%S>-${slug}"
-;;         ;;  :head "#+title: ${title}\n#+roam_alias:\n\n")
-;;         ;; ("gb" "Group B" plain (function org-roam-capture--get-point)
-;;         ;;  "%?"
-;;         ;;  :file-name "%<%Y%m%d%H%M%S>-${slug}"
-;;         ;;  :head "#+title: ${title}\n#+roam_alias:\n\n")
-;;         )))
+  :config
+  (setq org-roam-capture-templates
+      '(
+        ("d" "default" plain (function org-roam-capture--get-point)
+         "%?"
+         :file-name "%<%Y%m%d%H%M%S>-${slug}"
+         :head "#+title: ${title}\n#+roam_alias:\n#+roam_tags: \n\n")
+        ("r" "Read Note" plain (function org-roam-capture--get-point)
+         "* What\n\n* Why"
+         :file-name "Read-Note-${slug}"
+         :head "#+title: ${title}\n#+roam_alias:\n#+roam_tags: \n\n")
+        ("a" "Annotation" plain (function org-roam-capture--get-point)
+               "%U ${body}\n"
+               :file-name "${slug}"
+               :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
+               :immediate-finish t
+               :unnarrowed t)
+        ;; ("g" "group")
+        ;; ("ga" "Group A" plain (function org-roam-capture--get-point)
+        ;;  "%?"
+        ;;  :file-name "%<%Y%m%d%H%M%S>-${slug}"
+        ;;  :head "#+title: ${title}\n#+roam_alias:\n\n")
+        ;; ("gb" "Group B" plain (function org-roam-capture--get-point)
+        ;;  "%?"
+        ;;  :file-name "%<%Y%m%d%H%M%S>-${slug}"
+        ;;  :head "#+title: ${title}\n#+roam_alias:\n\n")
+        )))
 
-;; (add-to-list 'org-roam-capture-ref-templates
-;;              '("a" "Annotation" plain (function org-roam-capture--get-point)
-;;                "%U ${body}\n"
-;;                :file-name "${slug}"
-;;                :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
-;;                :immediate-finish t
-;;                :unnarrowed t))
+(add-to-list 'org-roam-capture-ref-templates
+             '("a" "Annotation" plain (function org-roam-capture--get-point)
+               "%U ${body}\n"
+               :file-name "${slug}"
+               :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
+               :immediate-finish t
+               :unnarrowed t))
 
 ;; (use-package! org-roam-server
 ;;   :config
