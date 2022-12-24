@@ -27,7 +27,7 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;; Dark theme :
-(setq doom-theme 'doom-xcode)
+;;(setq doom-theme 'doom-xcode)
 ;;(setq doom-theme 'doom-ayu-light)
 ;;(setq doom-theme 'doom-material)
 ;;(setq doom-theme 'doom-horizon)
@@ -38,7 +38,7 @@
 ;; Light theme
 ;;(setq doom-theme 'doom-one-light)
 ;;(setq doom-theme 'leuven)
-;;(setq doom-theme 'doom-solarized-light)
+(setq doom-theme 'doom-solarized-light)
 ;;(setq doom-theme 'doom-flatwhite)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -81,19 +81,6 @@
 
 ;; dashboard image
 ;;(setq fancy-splash-image "~/.doom.d/logo.png")
-
-(use-package nyan-mode
-  :defer t
-  :config
-  (setq nyan-cat-face-number 1
-        ;; nyan-animate-nyancat t
-        nyan-minimum-window-width 100
-        nyan-wavy-trail nil))
-
-(setq mode-line-format
-      (list
-       '(:eval (list (nyan-mode)))
-       ))
 
 (use-package recentf
   :defer t
@@ -167,36 +154,27 @@
   :commands
   lsp-ui-mode)
 
-(use-package! lsp-mode
-  :config
-  (setq lsp-idle-delay 0.500
-        lsp-enable-file-watchers nil))
-
 (add-hook! 'org-mode-hook (company-mode -1))
 (add-hook! 'org-capture-mode-hook (company-mode -1))
 
 (setq
  js-indent-level 2
  typescript-indent-level 2
- projectile-project-search-path '("~/CodeBox")
+ projectile-project-search-path '("~/codebox")
  )
 
-;; full-screen when open the emcas
-;;(if (eq initial-window-system 'x)
-;;    desktop file
-;;    (toggle-frame-maximized)
-;;    (toggle-frame-fullscreen))
 
 ;; Seoarate custom file
 (setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
 (when (file-exists-p custom-file)
   (load custom-file))
 
+
 (global-set-key "\C-s" 'swiper)
 
 (defun open-my-inbox()
   (interactive)
-  (find-file "~/Documents/org/Inbox.org"))
+  (find-file "~/Documents/org/inbox.org"))
 (global-set-key (kbd "<f12>") 'open-my-inbox)
 
 (use-package! evil-multiedit
@@ -225,7 +203,7 @@
         org-capture-templates
         '(("i" "Inbox" entry (file "~/Documents/org/inbox.org")
            "* TODO %?")
-          ("q" "Quick Note" entry (file "~/Documents/org/Drafts.org")
+          ("q" "Quick Note" entry (file "~/Documents/org/drafts.org")
            "* %?\n %T\n ")
           ("p" "Post" plain
                 (file create-blog-post)
@@ -320,34 +298,10 @@
         deft-directory "~/Documents/org/org_notes/"
         deft-recursive t))
 
-(use-package! openwith
-  :after-call (pre-command-hook after-find-file dired-before-readin-hook)
-  :config
-  (openwith-mode 1))
-(after! openwith
-  (setq openwith-associations
-        (list
-         (list (openwith-make-extension-regexp
-                '("mpg" "mpeg" "mp3" "mp4"
-                  "avi" "wmv" "wav" "mov" "flv"
-                  "ogm" "ogg" "mkv"))
-               "vlc"
-               '(file))
-         (list (openwith-make-extension-regexp
-                '("png" "gif" "jpeg" "jpg"))
-               "feh"
-               '(file))
-         (list (openwith-make-extension-regexp
-                '("pdf"))
-               "zathura"
-               '(file))))
-)
 ;; (setq url-proxy-services
 ;;        '(("http"     . "127.0.0.1:8001")
 ;;  	("https"     . "127.0.0.1:8001")))
 
-(setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
-		      ("melpa" . "http://elpa.emacs-china.org/melpa/")))
 
 (define-key evil-insert-state-map "\C-k" 'evil-delete-line)
 (define-key evil-insert-state-map "\C-y" 'yank)
@@ -388,58 +342,6 @@
 
 (setq-default evil-escape-key-sequence "jf")
 (setq-default evil-escape-delay 0.2)
-;; org roam config
-(use-package! org-roam
-  :init
-  (setq org-roam-directory "~/Documents/org/roam")
-
-  :config
-  (setq org-roam-capture-templates
-      '(
-        ("d" "default" plain (function org-roam-capture--get-point)
-         "%?"
-         :file-name "%<%Y%m%d%H%M%S>-${slug}"
-         :head "#+title: ${title}\n#+roam_alias:\n#+roam_tags: \n\n")
-        ("r" "Read Note" plain (function org-roam-capture--get-point)
-         "* What\n\n* Why"
-         :file-name "Read-Note-${slug}"
-         :head "#+title: ${title}\n#+roam_alias:\n#+roam_tags: \n\n")
-        ("a" "Annotation" plain (function org-roam-capture--get-point)
-               "%U ${body}\n"
-               :file-name "${slug}"
-               :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
-               :immediate-finish t
-               :unnarrowed t)
-        ;; ("g" "group")
-        ;; ("ga" "Group A" plain (function org-roam-capture--get-point)
-        ;;  "%?"
-        ;;  :file-name "%<%Y%m%d%H%M%S>-${slug}"
-        ;;  :head "#+title: ${title}\n#+roam_alias:\n\n")
-        ;; ("gb" "Group B" plain (function org-roam-capture--get-point)
-        ;;  "%?"
-        ;;  :file-name "%<%Y%m%d%H%M%S>-${slug}"
-        ;;  :head "#+title: ${title}\n#+roam_alias:\n\n")
-        )))
-
-(add-to-list 'org-roam-capture-ref-templates
-             '("a" "Annotation" plain (function org-roam-capture--get-point)
-               "%U ${body}\n"
-               :file-name "${slug}"
-               :head "#+title: ${title}\n#+roam_key: ${ref}\n#+roam_alias:\n"
-               :immediate-finish t
-               :unnarrowed t))
-
-;; (use-package! org-roam-server
-;;   :config
-;;   (setq org-roam-server-host "127.0.0.1"
-;;       org-roam-server-port 9090
-;;       org-roam-server-export-inline-images t
-;;       org-roam-server-authenticate nil
-;;       org-roam-server-network-label-truncate t
-;;       org-roam-server-network-label-truncate-length 60
-;;       org-roam-server-network-label-wrap-length 20))
-;;(org-roam-server-mode)
-;;(require 'org-roam-protocol)
 
 ;; Web mode config
 (use-package! web-mode
@@ -551,8 +453,6 @@ Navigate^^^^                 Element^^                    Attribute^^     Other
 ;;   (progn
 ;;     (add-hook 'before-save-hook #'lsp-format-buffer t)))
 
-(add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
-
 ;; (eval-after-load 'js2-mode
 ;;   '(add-hook 'js2-mode-hook
 ;;              (lambda ()
@@ -582,6 +482,4 @@ Navigate^^^^                 Element^^                    Attribute^^     Other
 ;;   '(add-hook 'css-mode-hook
 ;;              (lambda ()
 ;;                (add-hook 'before-save-hook 'web-beautify-css-buffer t t))))
-(setq inferior-lisp-program "sbcl");
-(add-to-list 'slime-contribs 'slime-repl)
-(toggle-frame-fullscreen)
+;;(toggle-frame-fullscreen)
