@@ -21,7 +21,7 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "Source Code Pro" :size 18 :weight 'normal))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 18 :weight 'normal))
 (set-language-environment "UTF-8")
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -177,11 +177,6 @@
   (find-file "~/Documents/org/inbox.org"))
 (global-set-key (kbd "<f12>") 'open-my-inbox)
 
-(use-package! evil-multiedit
-  :init
-  :config
-  (evil-multiedit-default-keybinds))
-
 ;; Org config
 (setq my/org-agenda-directory "~/Documents/org/")
 (after! org
@@ -258,49 +253,11 @@
 
 (define-key! org-agenda-mode-map "r" 'my/org-agenda-process-inbox-item)
 
-;;super-agende-mode
- ;; (use-package! org-super-agenda
- ;;   :after org-agenda
- ;;   :init
- ;;   (setq org-super-agenda-groups
- ;;       '((:name "Today"
- ;;                :time-grid t)
- ;;         (:name "In Progress"
- ;;                :todo "NEXT")
- ;;         (:name "Important"
- ;;                :priority "A")
- ;;         (:name "To Refile"
- ;;                :todo "TODO")
- ;;         (:name "Repeat Event"
- ;;          :tag "repeat")
- ;;         (:name "Done"
- ;;                :todo "DONE")))
-
- ;;       :config
- ;;       (org-super-agenda-mode))
-
-;; Org-brain
-;; (use-package! org-brain
-;;   :init
-;;   (setq org-brain-path "~/Documents/org/org_notes/org_brain/")
-;; ;;  (with-eval-after-load 'evil (evil-set-initial-state 'org-brain-visualize-mode 'emacs))
-;;   :config
-;;   (map! :ne "SPC n b" #'org-brain-visualize)
-;;   (setq org-id-track-globally t)
-;;   (setq org-id-locations-file "~/Documents/org/.org-id-locations")
-;;   (add-hook 'before-save-hook #'org-brain-ensure-ids-in-buffer)
-;;   (setq org-brain-visualize-default-choices 'all)
-;;   )
-
 (use-package! deft
   :init
   (setq deft-extensions '("txt" "org" "md")
         deft-directory "~/Documents/org/org_notes/"
         deft-recursive t))
-
-;; (setq url-proxy-services
-;;        '(("http"     . "127.0.0.1:8001")
-;;  	("https"     . "127.0.0.1:8001")))
 
 
 (define-key evil-insert-state-map "\C-k" 'evil-delete-line)
@@ -312,9 +269,6 @@
 (define-key evil-insert-state-map "\C-p" 'evil-previous-line)
 (define-key evil-visual-state-map "\C-p" 'evil-previous-line)
 
-;; (setq org-plantuml-jar-path (expand-file-name "~/.emacs.d/.local/etc/plantuml.jar"))
-;; (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
-;; (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)))
 
 (map! :leader
       :desc "lsp jump back"
@@ -353,70 +307,6 @@
   (setq web-mode-code-indent-offset 2)
   (setq web-mode-enable-current-element-highlight t))
 
-
-
-(add-to-list 'auto-mode-alist '("\\.jsx?$" . rjsx-mode))
-(setq-local indent-line-function 'js-jsx-indent-line)
-;;(add-hook 'rjsx-mode-hook 'prettier-js-mode)
-;; (use-package! snails :load-path "lisp/snails")
-(add-hook 'typescript-tsx-mode-hook 'prettier-js-mode)
-(add-hook 'before-save-hook 'gofmt-before-save)
-
-;; Hydra config
-(defhydra hydra-web-mode (:color blue :quit-key "q" :hint nil)
-"
-Navigate^^^^                 Element^^                    Attribute^^     Other
-[_j_/_k_] next/prev element  [_c_] clone                  [_@_] insert    [_p_] xpath (display path)
-[_J_/_K_] next/prev sibling  [_d_] vanish (keep content)  [_!_] delete    [_q_] quit
-[_h_/_l_] parent/child       [_D_] kill (inkl. content)   [_[_] next
-[_a_/_e_] head/end element   [_r_] rename                 [_]_] previous
-[_f_] fold/unfold^^          [_w_] wrap
-^^^^                         [_i_] insert element
-^^^^                         [_s_] select(tag,content)
-"
-  ("j" web-mode-element-next :exit nil)
-  ("k" web-mode-element-previous :exit nil)
-  ("J"  web-mode-element-sibling-next :exit nil)
-  ("K"  web-mode-element-sibling-previous :exit nil)
-  ("h"  web-mode-element-parent :exit nil)
-  ("l"  web-mode-element-child :exit nil)
-  ("a" web-mode-element-beginning :exit nil)
-  ("e" web-mode-element-end :exit nil)
-  ("c" web-mode-element-clone :exit nil)
-  ("f" web-mode-element-children-fold-or-unfold :exit nil)
-  ("i" web-mode-element-insert :exit nil)
-  ("D" web-mode-element-kill :exit nil)
-  ("d" web-mode-element-vanish :exit nil)
-  ;;("m" web-mode-element-mute-blanks)
-  ("w" web-mode-element-wrap :exit nil)
-  ("r" web-mode-element-rename :exit nil)
-  ("s" web-mode-element-select :exit nil)
-  ;; attribute
-  ("@" web-mode-attribute-insert :exit nil)
-  ("!" web-mode-attribute-kill :exit nil)
-  ("]" web-mode-attribute-next :exit nil)
-  ("[" web-mode-attribute-previous :exit nil)
-  ; other
-  ("p" web-mode-dom-xpath :exit nil)
-  ("q" nil "quit" :exit t))
-(define-key web-mode-map (kbd "C-c .") 'hydra-web-mode/body)
-(eval-after-load "web-mode"
-  '(set-face-background 'web-mode-current-element-highlight-face "#98f5ff"))
-
-(defhydra dumb-jump-hydra (:color blue :columns 3)
-    "Dumb Jump"
-    ("j" dumb-jump-go "Go")
-    ("o" dumb-jump-go-other-window "Other window")
-    ("e" dumb-jump-go-prefer-external "Go external")
-    ("x" dumb-jump-go-prefer-external-other-window "Go external other window")
-    ("i" dumb-jump-go-prompt "Prompt")
-    ("l" dumb-jump-quick-look "Quick look")
-    ("b" dumb-jump-back "Back"))
-(map! :leader
-      :desc "Dumb jump"
-      :n
-      "j d" 'dumb-jump-hydra/body)
-
 ;; Thanks magars
 (defun eval-and-replace ()
   "Replace the preceding sexp with its value."
@@ -448,38 +338,5 @@ Navigate^^^^                 Element^^                    Attribute^^     Other
             (org-read-date) "-" (format "%s.md" name))
            "~/Documents/myjekyllblog/_posts/")))
 
-;; (use-package! ruby-mode
-;;   :init
-;;   (progn
-;;     (add-hook 'before-save-hook #'lsp-format-buffer t)))
-
-;; (eval-after-load 'js2-mode
-;;   '(add-hook 'js2-mode-hook
-;;              (lambda ()
-;;                (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
-
-;; (eval-after-load 'js
-;;   '(add-hook 'js-mode-hook
-;;              (lambda ()
-;;                (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
-
-;; (eval-after-load 'json-mode
-;;   '(add-hook 'json-mode-hook
-;;              (lambda ()
-;;                (add-hook 'before-save-hook 'web-beautify-js-buffer t t))))
-
-;; (eval-after-load 'sgml-mode
-;;   '(add-hook 'html-mode-hook
-;;              (lambda ()
-;;                (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
-
-;; (eval-after-load 'web-mode
-;;   '(add-hook 'web-mode-hook
-;;              (lambda ()
-;;                (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
-
-;; (eval-after-load 'css-mode
-;;   '(add-hook 'css-mode-hook
-;;              (lambda ()
-;;                (add-hook 'before-save-hook 'web-beautify-css-buffer t t))))
-;;(toggle-frame-fullscreen)
+;; For emacs server
+(server-start) 

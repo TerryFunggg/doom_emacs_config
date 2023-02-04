@@ -128,12 +128,12 @@
        ;;fsharp            ; ML stands for Microsoft's Language
        ;;fstar             ; (dependent) types and (monadic) effects and Z3
        ;;gdscript          ; the language you waited for
-       go                  ; the hipster dialect
+       ;;go                  ; the hipster dialect
        ;;(haskell +dante)  ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        json                ; At least it ain't XML
-       java                ; the poster child for carpal tunnel syndrome
+       ;;java                ; the poster child for carpal tunnel syndrome
        javascript          ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
@@ -148,7 +148,7 @@
        ;;ocaml             ; an objective camel
        (org
             +journal
-            +pomodoro
+            ;;+pomodoro
             +pretty)               ; organize your plain life in plain text
        php                 ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
