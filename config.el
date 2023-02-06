@@ -174,73 +174,8 @@
 
 (defun open-my-inbox()
   (interactive)
-  (find-file "~/Documents/org/inbox.org"))
+  (find-file "~/org/gtd/inbox.org"))
 (global-set-key (kbd "<f12>") 'open-my-inbox)
-
-;; Org config
-(setq my/org-agenda-directory "~/Documents/org/")
-(after! org
-  (map! :map org-mode-map
-        :n "M-j" #'org-metadown
-        :n "M-k" #'org-metaup)
-  (setq org-directory "~/Documents/org"
-        org-hide-emphasis-markers t
-        org-agenda-span 'day
-        org-agenda-start-day "+0d"
-        org-todo-keywords '((sequencep "TODO(t)" "NEXT(n)" "|" "DONE(d)" "HOLD(h)"))
-        org-tag-alist (quote (("@home" . ?h)
-                              ("@office" . ?o)
-                              ("book" . ?b)
-                              ("websit" . ?w)
-                              ("video" . ?v)
-                              ("repeat"  . ?r)
-                              ("project" . ?p)))
-        org-capture-templates
-        '(("i" "Inbox" entry (file "~/Documents/org/inbox.org")
-           "* TODO %?")
-          ("q" "Quick Note" entry (file "~/Documents/org/drafts.org")
-           "* %?\n %T\n ")
-          ("p" "Post" plain
-                (file create-blog-post)
-                (file "~/.doom.d/post.orgcaptmpl")))
-        org-agenda-custom-commands
-        '(("p" "Agenda"
-           ((agenda ""
-                    ((org-agenda-span 'day)))
-            (todo "NEXT"
-               ((org-agenda-overriding-header "In Progress")
-                (org-agenda-files (list
-                                   (concat my/org-agenda-directory "projects.org")
-                                   (concat my/org-agenda-directory "next.org")))))
-            (todo "TODO"
-               ((org-agenda-overriding-header "Projects")
-                (org-agenda-files (list (concat my/org-agenda-directory "projects.org")))))
-            (todo "TODO"
-               ((org-agenda-overriding-header "One-off Tasks")
-                (org-agenda-files (list (concat my/org-agenda-directory "next.org")))
-                (org-agenda-skip-function '(org-agenda-skip-entry-if 'deadline 'scheduled))))
-            (todo "TODO"
-               ((org-agenda-overriding-header "To Refile")
-                (org-agenda-files (list (concat my/org-agenda-directory "inbox.org")))))
-            nil)))
-        ;; org-agenda-custom-commands
-        ;; '(("A" "Agenda" my/org-agenda-view)
-        ;;         ("p" "Plan today"
-        ;;            ((agenda)
-        ;;           ("j" . "Jobs")
-        ;;             (tags-todo "PROJECT")))
-        ;;           ("ja" "Important & Emergency" tags-todo "+PRIORITY=\"A\"")
-        ;;           ("jb" "Important & Not Emergency" tags-todo "+PRIORITY=\"B\""))
-        org-refile-targets '(("~/Documents/org/inbox.org" :level . 0)
-                           ("~/Documents/org/next.org" :level . 0)
-                           ("~/Documents/org/done.org" :level . 0))
-
-        org-agenda-files (list (concat my/org-agenda-directory "next.org")
-                               (concat my/org-agenda-directory "inbox.org")
-                               (concat my/org-agenda-directory "repeaters.org")
-                               (concat my/org-agenda-directory "project.org"))))
-(with-eval-after-load 'org
-  (add-to-list 'org-modules 'org-habit t))
 
 (defun my/org-agenda-process-inbox-item ()
   "Process a single item in the org-agenda"
@@ -250,13 +185,12 @@
    (org-agenda-set-tags)
    (org-agenda-priority)
    (org-agenda-refile nil nil t)))
-
 (define-key! org-agenda-mode-map "r" 'my/org-agenda-process-inbox-item)
 
 (use-package! deft
   :init
   (setq deft-extensions '("txt" "org" "md")
-        deft-directory "~/Documents/org/org_notes/"
+        deft-directory "~/org/notes/"
         deft-recursive t))
 
 
@@ -338,5 +272,118 @@
             (org-read-date) "-" (format "%s.md" name))
            "~/Documents/myjekyllblog/_posts/")))
 
-;; For emacs server
-(server-start) 
+
+;; Org Config START
+(global-set-key (kbd "C-c a") #'org-agenda)
+(setq org-directory "~/org")
+(setq org-agenda-files '("~/org/gtd/"))
+(setq org-agenda-diary-file "~/org/diary")
+(setq diary-file "~/org/diary")
+(setq org-capture-templates nil) ;;1
+(setq org-agenda-custom-commands nil) ;; 2
+(add-hook 'org-agenda-mode-hook 'delete-other-windows);; 3
+(setq org-log-done 'time)
+
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "HOLD(h)" "|" "DONE(d)")))
+
+(defun log-todo-next-creation-date (&rest ignore)
+  "Log NEXT creation time in the property drawer under the key 'ACTIVATED'"
+  (when (and (string= (org-get-todo-state) "NEXT")
+             (not (org-entry-get nil "ACTIVATED")))
+    (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d]"))))
+(add-hook 'org-after-todo-state-change-hook #'log-todo-next-creation-date)
+
+(setq org-tag-alist
+       '(("@work" . ?w)
+         ("@home" . ?h)
+         ("@project" . ?p)
+         ("@meeting" . ?e)
+         ("@me" . ?m)
+         ("@book" . ?b)
+         ("@website" . ?i)
+         ("@video" . ?v)))
+
+(add-to-list 'org-capture-templates '("m" "Marks"))
+
+;; mark at monment.
+(add-to-list
+ 'org-capture-templates
+ '("mm" "Quick Mark" entry
+   (file "~/org/gtd/inbox.org")
+   "* %i%? \n%T"))
+
+;; mark with tag
+(add-to-list
+ 'org-capture-templates
+ '("mt" "Mark Task" entry
+   (file "~/org/gtd/inbox.org")
+   "* %i%?%^G \n%T"))
+
+;; todo
+(add-to-list
+ 'org-capture-templates
+ '("t" "Todo" entry
+   (file"~/org/gtd/inbox.org")
+   "* TODO %?\n /Entered on/ %U"))
+
+;; jorunal
+(add-to-list
+ 'org-capture-templates
+ '("j" "Journal" entry
+   (file+datetree "~/org/journal.org")
+   "* %U - %^{heading\n} %?"))
+
+(add-to-list 'org-capture-templates '("n" "Notes"))
+(add-to-list
+ 'org-capture-templates
+ '("np" "Programming" entry
+   (file "~/org/notes/programming.org")
+   "* %^{heading} %t %^g\n  %?\n"))
+
+;; Query
+(add-to-list 'org-agenda-custom-commands '("Q"."Custom Queries"))
+(add-to-list 'org-agenda-custom-commands '("Qn"."Query Notes"))
+
+(add-to-list 'org-agenda-custom-commands
+             '("Qnp" "Programming Notes" tags ""
+               ((org-agenda-files (file-expand-wildcards "~/org/notes/programming.org"))
+                (org-agenda-prefix-format " "))))
+
+ (add-to-list 'org-agenda-custom-commands
+              '("g" "Get Things Done (GTD)"
+                ((agenda ""
+                         ((org-agenda-span 'day)
+                          (org-agenda-include-diary t)
+                          (org-agenda-skip-function
+                           '(org-agenda-skip-entry-if 'deadline))
+                          (org-deadline-warning-days 0)))
+                 (todo "NEXT"
+                       ((org-agenda-skip-function
+                         '(org-agenda-skip-entry-if 'deadline))
+                        (org-agenda-prefix-format "  %i %-12:c [%e] ")
+                        (org-agenda-overriding-header "\nTasks\n")))
+                 ;;(tags "+DEADLINE<\"<today>\""
+                 ;;;;  ((org-agenda-overriding-columns-format
+                 ;;;; "%25ITEM %DEADLINE %TAGS")
+                 ;;;; (org-agenda-overriding-header "\nDeadlines\n")))
+                 (tags-todo "inbox"
+                            ((org-agenda-prefix-format "  %?-12t% s")
+                             (org-agenda-skip-function
+                              '(org-agenda-skip-entry-if 'notregexp "\\* TODO"))
+                             (org-agenda-overriding-header "\nInbox\n")))
+                 (tags "CLOSED>=\"<today>\""
+                       ((org-agenda-overriding-header "\nCompleted today\n")))
+                 (todo "HOLD"
+                       ((org-agenda-skip-function
+                         '(org-agenda-skip-entry-if 'deadline))
+                        (org-agenda-prefix-format "  %i %-12:c [%e] ")
+                        (org-agenda-overriding-header "\nHOLD\n"))))
+                nil
+                ("~/org/export/daily.html")))
+
+(setq org-refile-targets
+      '(("~/org/gtd/done.org" :maxlevel . 3)))
+(setq org-refile-use-outline-path 'file)
+(setq org-outline-path-complete-in-steps nil)
+;; Org Config END
