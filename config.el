@@ -285,11 +285,11 @@
 (setq org-log-done 'time)
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "HOLD(h)" "|" "DONE(d)")))
+      '((sequence "TODO(t)" "STRT(n)" "HOLD(h)" "|" "DONE(d)")))
 
 (defun log-todo-next-creation-date (&rest ignore)
   "Log NEXT creation time in the property drawer under the key 'ACTIVATED'"
-  (when (and (string= (org-get-todo-state) "NEXT")
+  (when (and (string= (org-get-todo-state) "STRT")
              (not (org-entry-get nil "ACTIVATED")))
     (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d]"))))
 (add-hook 'org-after-todo-state-change-hook #'log-todo-next-creation-date)
@@ -358,7 +358,7 @@
                           (org-agenda-skip-function
                            '(org-agenda-skip-entry-if 'deadline))
                           (org-deadline-warning-days 0)))
-                 (todo "NEXT"
+                 (todo "STRT"
                        ((org-agenda-skip-function
                          '(org-agenda-skip-entry-if 'deadline))
                         (org-agenda-prefix-format "  %i %-12:c [%e] ")
