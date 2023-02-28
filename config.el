@@ -166,12 +166,12 @@
 
 
 ;; Seoarate custom file
-(setq-default custom-file (expand-file-name ".custom.el" doom-private-dir))
+(setq-default custom-file (expand-file-name ".custom.el" doom-user-dir))
 (when (file-exists-p custom-file)
   (load custom-file))
 
 
-(global-set-key "\C-s" 'swiper)
+;;(global-set-key "\C-s" 'swiper)
 
 (defun open-my-inbox()
   (interactive)
