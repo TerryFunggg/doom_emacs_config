@@ -38,8 +38,9 @@
 ;; Light theme
 ;;(setq doom-theme 'doom-one-light)
 ;;(setq doom-theme 'leuven)
-(setq doom-theme 'doom-solarized-light)
+;;(setq doom-theme 'doom-solarized-light)
 ;;(setq doom-theme 'doom-flatwhite)
+(setq doom-theme 'tsdh-light)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
