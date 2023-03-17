@@ -353,33 +353,29 @@
 
  (add-to-list 'org-agenda-custom-commands
               '("g" "Get Things Done (GTD)"
-                ((agenda ""
-                         ((org-agenda-span 'day)
-                          (org-agenda-include-diary t)
-                          (org-agenda-skip-function
-                           '(org-agenda-skip-entry-if 'deadline))
-                          (org-deadline-warning-days 0)))
-                 (todo "STRT"
-                       ((org-agenda-skip-function
-                         '(org-agenda-skip-entry-if 'deadline))
-                        (org-agenda-prefix-format "  %i %-12:c [%e] ")
-                        (org-agenda-overriding-header "\nTasks\n")))
-                 ;;(tags "+DEADLINE<\"<today>\""
-                 ;;;;  ((org-agenda-overriding-columns-format
-                 ;;;; "%25ITEM %DEADLINE %TAGS")
-                 ;;;; (org-agenda-overriding-header "\nDeadlines\n")))
-                 (tags-todo "inbox"
-                            ((org-agenda-prefix-format "  %?-12t% s")
-                             (org-agenda-skip-function
-                              '(org-agenda-skip-entry-if 'notregexp "\\* TODO"))
+                (
+                 (tags "inbox+TODO=\"TODO\"+PRIORITY=\"A\"|project+TODO=\"TODO\"+PRIORITY=\"A\""
+                            (
+                             (org-agenda-prefix-format "  %?-12t% s [%e] ")
+                             (org-agenda-overriding-header "\nGet thing Done\n")))
+                 (tags "inbox+TODO=\"TODO\"-PRIORITY=\"A\""
+                            (
+                             (org-agenda-prefix-format "  %?-12t% s ")
                              (org-agenda-overriding-header "\nInbox\n")))
-                 (tags "CLOSED>=\"<today>\""
-                       ((org-agenda-overriding-header "\nCompleted today\n")))
+                 (tags "project+TODO=\"TODO\"-PRIORITY=\"A\""
+                            ((org-agenda-prefix-format "  %?-12t% s [%e] ")
+                             (org-agenda-overriding-header "\nProjects\n")))
+                 (tags "book"
+                            ((org-agenda-prefix-format "  %?-12t% s")
+                             (org-agenda-overriding-header "\nTo Read\n")))
+                 ;; (tags "+DEADLINE>=\"<today>\""
+                 ;; (tags "CLOSED>=\"<today>\""
+                 ;;       ((org-agenda-overriding-header "\nCompleted today\n")))
                  (todo "HOLD"
                        ((org-agenda-skip-function
                          '(org-agenda-skip-entry-if 'deadline))
-                        (org-agenda-prefix-format "  %i %-12:c [%e] ")
-                        (org-agenda-overriding-header "\nHOLD\n"))))
+                        (org-agenda-prefix-format "  %?-12t% s ")
+                        (org-agenda-overriding-header "\nHold\n"))))
                 nil
                 ("~/org/export/daily.html")))
 
