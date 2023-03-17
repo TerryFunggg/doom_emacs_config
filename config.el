@@ -188,11 +188,11 @@
    (org-agenda-refile nil nil t)))
 (define-key! org-agenda-mode-map "r" 'my/org-agenda-process-inbox-item)
 
-(use-package! deft
-  :init
-  (setq deft-extensions '("txt" "org" "md")
-        deft-directory "~/org/notes/"
-        deft-recursive t))
+;; (use-package! deft
+;;   :init
+;;   (setq deft-extensions '("txt" "org" "md")
+;;         deft-directory "~/org/notes/"
+;;         deft-recursive t))
 
 
 (define-key evil-insert-state-map "\C-k" 'evil-delete-line)
@@ -264,14 +264,14 @@
   (insert ";"))
 (global-set-key "\C-c\;" 'my/semicolon)
 
-(defun create-blog-post ()
-        "Create blog post"
-        (interactive)
-        (let ((name (read-string "Post title: ")))
-          (expand-file-name
-           (concat
-            (org-read-date) "-" (format "%s.md" name))
-           "~/Documents/myjekyllblog/_posts/")))
+;; (defun create-blog-post ()
+;;         "Create blog post"
+;;         (interactive)
+;;         (let ((name (read-string "Post title: ")))
+;;           (expand-file-name
+;;            (concat
+;;             (org-read-date) "-" (format "%s.md" name))
+;;            "~/Documents/myjekyllblog/_posts/")))
 
 
 ;; Org Config START
