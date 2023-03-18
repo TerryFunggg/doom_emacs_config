@@ -305,35 +305,38 @@
          ("@website" . ?i)
          ("@video" . ?v)))
 
-(add-to-list 'org-capture-templates '("m" "Marks"))
+
+(after! org
+  (add-to-list 'org-capture-templates
+               '("m" "Marks")))
 
 ;; mark at monment.
-(add-to-list
+(after! org (add-to-list
  'org-capture-templates
- '("mm" "Quick Mark" entry
+ '("mm" "Mark with timestamp" entry
    (file "~/org/gtd/inbox.org")
-   "* %i%? \n%T"))
+   "* %i%? \n%T")))
 
 ;; mark with tag
-(add-to-list
+(after! org (add-to-list
  'org-capture-templates
- '("mt" "Mark Task" entry
+ '("mt" "Mark with Tag" entry
    (file "~/org/gtd/inbox.org")
-   "* %i%?%^G \n%T"))
+   "* %i%?%^G \n%T")))
 
 ;; todo
-(add-to-list
+(after! org (add-to-list
  'org-capture-templates
  '("t" "Todo" entry
    (file"~/org/gtd/inbox.org")
-   "* TODO %?\n /Entered on/ %U"))
+   "* TODO %?\n")))
 
 ;; jorunal
-(add-to-list
+(after! org (add-to-list
  'org-capture-templates
  '("j" "Journal" entry
    (file+datetree "~/org/journal.org")
-   "* %U - %^{heading\n} %?"))
+   "* %U - %^{heading\n} %?")))
 
 (add-to-list 'org-capture-templates '("n" "Notes"))
 (add-to-list
