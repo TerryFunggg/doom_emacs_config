@@ -303,6 +303,8 @@
          ("@me" . ?m)
          ("@book" . ?b)
          ("@website" . ?i)
+         ("@cs" . ?c)
+         ("@ee" . ?s)
          ("@video" . ?v)))
 
 
@@ -357,7 +359,7 @@
  (add-to-list 'org-agenda-custom-commands
               '("g" "Get Things Done (GTD)"
                 (
-                 (tags "inbox+TODO=\"TODO\"+PRIORITY=\"A\"|project+TODO=\"TODO\"+PRIORITY=\"A\""
+                 (tags "inbox+TODO=\"TODO\"+PRIORITY=\"A\"|project+TODO=\"TODO\"+PRIORITY=\"A\"|book+TODO=\"TODO\"+PRIORITY=\"A\""
                             (
                              (org-agenda-prefix-format "  %?-12t% s [%e] ")
                              (org-agenda-overriding-header "\nGet thing Done\n")))
@@ -368,7 +370,7 @@
                  (tags "project+TODO=\"TODO\"-PRIORITY=\"A\""
                             ((org-agenda-prefix-format "  %?-12t% s [%e] ")
                              (org-agenda-overriding-header "\nProjects\n")))
-                 (tags "book"
+                 (tags "book-PRIORITY=\"A\""
                             ((org-agenda-prefix-format "  %?-12t% s")
                              (org-agenda-overriding-header "\nTo Read\n")))
                  ;; (tags "+DEADLINE>=\"<today>\""
@@ -387,3 +389,15 @@
 (setq org-refile-use-outline-path 'file)
 (setq org-outline-path-complete-in-steps nil)
 ;; Org Config END
+
+
+;; C
+(after! lsp-clangd
+  (setq lsp-clients-clangd-args
+        '("-j=3"
+          "--background-index"
+          "--clang-tidy"
+          "--completion-style=detailed"
+          "--header-insertion=never"
+          "--header-insertion-decorators=0"))
+  (set-lsp-priority! 'clangd 2))
