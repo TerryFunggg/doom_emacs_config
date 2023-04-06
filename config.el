@@ -356,10 +356,15 @@
                ((org-agenda-files (file-expand-wildcards "~/org/notes/programming.org"))
                 (org-agenda-prefix-format " "))))
 
+(add-to-list 'org-agenda-custom-commands
+             '("Qb" "Bookmarks" tags ""
+               ((org-agenda-files (file-expand-wildcards "~/org/bookmark.org"))
+                (org-agenda-prefix-format " "))))
+
  (add-to-list 'org-agenda-custom-commands
               '("g" "Get Things Done (GTD)"
                 (
-                 (tags "inbox+TODO=\"TODO\"+PRIORITY=\"A\"|project+TODO=\"TODO\"+PRIORITY=\"A\"|book+TODO=\"TODO\"+PRIORITY=\"A\""
+                 (tags "inbox+TODO=\"TODO\"+PRIORITY=\"A\"|project+TODO=\"TODO\"+PRIORITY=\"A\"|read+TODO=\"TODO\"+PRIORITY=\"A\""
                             (
                              (org-agenda-prefix-format "  %?-12t% s [%e] ")
                              (org-agenda-overriding-header "\nGet thing Done\n")))
@@ -370,7 +375,7 @@
                  (tags "project+TODO=\"TODO\"-PRIORITY=\"A\""
                             ((org-agenda-prefix-format "  %?-12t% s [%e] ")
                              (org-agenda-overriding-header "\nProjects\n")))
-                 (tags "book-PRIORITY=\"A\""
+                 (tags "read-PRIORITY=\"A\""
                             ((org-agenda-prefix-format "  %?-12t% s")
                              (org-agenda-overriding-header "\nTo Read\n")))
                  ;; (tags "+DEADLINE>=\"<today>\""
