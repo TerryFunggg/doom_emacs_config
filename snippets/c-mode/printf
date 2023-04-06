@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: printf
+# uuid: printf
+# key: pf
+# condition: t
+# --
+printf("$1",$2);
