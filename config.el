@@ -54,7 +54,6 @@
 (setq org-agenda-files '("~/org/gtd/"))
 (setq org-agenda-diary-file "~/org/diary")
 (setq diary-file "~/org/diary")
-(setq org-capture-templates nil)
 (setq org-agenda-custom-commands nil)
 (setq org-tag-alist
        '(("@work" . ?w)
@@ -79,6 +78,7 @@
     (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d]"))))
 (add-hook 'org-after-todo-state-change-hook #'log-todo-next-creation-date)
 
+(after! org (setq org-capture-templates nil))
 ;; Capture
 (after! org (add-to-list
  'org-capture-templates
@@ -86,11 +86,11 @@
    (file"~/org/gtd/inbox.org")
    "* TODO %i%?%^G \n%T")))
 
-(add-to-list
+(after! org  (add-to-list
  'org-capture-templates
  '("n" "Quick Note" entry
    (file "~/org/notes/quick_notes.org")
-   "* %^{heading} %t %^g\n  %?\n"))
+   "* %^{heading} %t %^g\n  %?\n")))
 
 
 ;; Query
@@ -119,7 +119,7 @@
                  (tags "project+TODO=\"TODO\"-PRIORITY=\"A\""
                             ((org-agenda-prefix-format "  %?-12t% s [%e] ")
                              (org-agenda-overriding-header "\nProjects\n")))
-                 (tags "read-PRIORITY=\"A\""
+                 (tags "read+TODO=\"TODO\"-PRIORITY=\"A\""
                             ((org-agenda-prefix-format "  %?-12t% s")
                              (org-agenda-overriding-header "\nTo Read\n")))
                  ;; (tags "+DEADLINE>=\"<today>\""
@@ -134,6 +134,13 @@
                 ("~/org/export/agenda.html")))
 
 (add-hook 'org-agenda-mode-hook 'delete-other-windows)
+
+(defun my/org-inbox ()
+    "Edit my emacs config"
+    (interactive)
+    (find-file "~/org/gtd/inbox.org"))
+
+(global-set-key (kbd "<12>") #'my/org-inbox)
 
 
 (defun my/org-agenda-process-inbox-item ()
