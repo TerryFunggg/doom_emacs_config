@@ -84,7 +84,7 @@
  'org-capture-templates
  '("t" "Todo" entry
    (file"~/org/gtd/inbox.org")
-   "* TODO %i%?^G \n%T")))
+   "* TODO %i%?%^G \n%T")))
 
 (add-to-list
  'org-capture-templates
