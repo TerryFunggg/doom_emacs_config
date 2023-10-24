@@ -5,8 +5,8 @@
       user-mail-address "terryyessfung@gmail.com")
 
 ;;
-(setq doom-font (font-spec :family "JetBrains Mono" :size 14 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 15))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 16 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 17))
 
 (setq doom-theme 'doom-dracula)
 
@@ -64,19 +64,12 @@
          ("@book" . ?b)
          ("@website" . ?i)
          ("@cs" . ?c)
-         ("@ee" . ?s)
+         ("@podcast" . ?d)
          ("@video" . ?v)))
 
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "HOLD(h)" "|" "DONE(d)")))
-
-(defun log-todo-next-creation-date (&rest ignore)
-  "Log NEXT creation time in the property drawer under the key 'ACTIVATED'"
-  (when (and (string= (org-get-todo-state) "NEXT")
-             (not (org-entry-get nil "ACTIVATED")))
-    (org-entry-put nil "ACTIVATED" (format-time-string "[%Y-%m-%d]"))))
-(add-hook 'org-after-todo-state-change-hook #'log-todo-next-creation-date)
+      '((sequence "TODO(t)""HOLD(h)" "|" "DONE(d)")))
 
 (after! org (setq org-capture-templates nil))
 ;; Capture
@@ -90,13 +83,13 @@
  'org-capture-templates
  '("n" "Quick Note" entry
    (file "~/org/notes/quick_notes.org")
-   "* %^{heading} %t %^g\n  %?\n")))
+   "* %^{heading} %t\n%?\n")))
 
 
 ;; Query
 (add-to-list 'org-agenda-custom-commands '("Q"."Custom Queries"))
 (add-to-list 'org-agenda-custom-commands
-             '("Qn" "Search Quick Notes" tags ""
+             '("Qn" "Search Quick Notes" search "* "
                ((org-agenda-files (file-expand-wildcards "~/org/notes/quick_notes.org"))
                 (org-agenda-prefix-format " "))))
 
@@ -133,7 +126,7 @@
                 nil
                 ("~/org/export/agenda.html")))
 
-(add-hook 'org-agenda-mode-hook 'delete-other-windows)
+;;(add-hook 'org-agenda-mode-hook 'delete-other-windows)
 
 (defun my/org-inbox ()
     "Edit my emacs config"
@@ -152,3 +145,8 @@
    (org-agenda-priority)
    (org-agenda-refile nil nil t)))
 (define-key! org-agenda-mode-map "r" 'my/org-agenda-process-inbox-item)
+
+
+;; For windows WSL
+(setq browse-url-browser-function 'browse-url-generic
+        browse-url-generic-program "wslview")
