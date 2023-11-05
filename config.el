@@ -124,7 +124,7 @@
                         (org-agenda-prefix-format "  %?-12t% s ")
                         (org-agenda-overriding-header "\nHold\n"))))
                 nil
-                ("~/org/export/agenda.html")))
+                ("~/org/index.html")))
 
 ;;(add-hook 'org-agenda-mode-hook 'delete-other-windows)
 
@@ -148,5 +148,25 @@
 
 
 ;; For windows WSL
-(setq browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "wslview")
+;;(setq browse-url-browser-function 'browse-url-generic
+;;        browse-url-generic-program "wslview")
+
+;; (defun org-mode-export-hook ()
+;;    (add-hook 'after-save-hook 'org-html-export-to-html t t))
+
+;; (add-hook 'org-mode-hook #'org-mode-export-hook)
+;;
+
+
+(defun my/agenda-deploy ()
+  (when (s-prefix? (expand-file-name "~/org/gtd/") (buffer-file-name (current-buffer)))
+    (let ((default-directory "~/org/"))
+      (shell-command "rm index.html")
+      (org-store-agenda-views)
+      (start-process "" nil "sh" "deploy.sh"))
+    )
+  )
+
+(add-hook 'org-mode-hook
+          (lambda ()
+            (add-hook 'after-save-hook 'my/agenda-deploy)))
