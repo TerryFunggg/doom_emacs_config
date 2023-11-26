@@ -8,7 +8,7 @@
 (setq doom-font (font-spec :family "JetBrains Mono" :size 16 :weight 'semi-light)
       doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 17))
 
-(setq doom-theme 'doom-dracula)
+(setq doom-theme 'wombat)
 
 (setq display-line-numbers-type t)
 (setq display-line-numbers-type 'relative)
@@ -133,7 +133,7 @@
     (interactive)
     (find-file "~/org/gtd/inbox.org"))
 
-(global-set-key (kbd "<12>") #'my/org-inbox)
+(global-set-key (kbd "<f12>") #'my/org-inbox)
 
 
 (defun my/org-agenda-process-inbox-item ()
@@ -170,3 +170,7 @@
 (add-hook 'org-mode-hook
           (lambda ()
             (add-hook 'after-save-hook 'my/agenda-deploy)))
+
+(global-set-key (kbd"<f12>") 'dash-at-point)
+
+(global-set-key (kbd "C-c s") #'rgrep)
